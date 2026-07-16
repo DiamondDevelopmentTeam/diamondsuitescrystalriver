@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: diamondsuitescrystalriver
+    runtime: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SERVE_CLIENT
+        value: "true"
+      - key: PORT
+        value: "4100"
+      - key: ALLOWED_ORIGINS
+        value: https://diamondsuitescrystalriver.com,https://www.diamondsuitescrystalriver.com
+      - key: CONTACT_TO
+        value: ashley@diamondsuitesocala.com
+      - key: CONTACT_FROM
+        value: website@diamondsuitescrystalriver.com
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_SECURE
+        value: "false"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
