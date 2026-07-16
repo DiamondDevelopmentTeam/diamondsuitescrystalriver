@@ -22,7 +22,7 @@ jobs:
   build:
     name: Build client
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Checkout repository
@@ -34,18 +34,31 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: package-lock.json
+          registry-url: https://registry.npmjs.org
+
+      - name: Configure npm
+        run: |
+          npm config set registry https://registry.npmjs.org/
+          npm config set fetch-retries 5
+          npm config set fetch-retry-mintimeout 20000
+          npm config set fetch-retry-maxtimeout 120000
+          npm config set fetch-timeout 300000
 
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --no-audit --no-fund
+        timeout-minutes: 15
 
       - name: Type-check client
-        run: npm run typecheck --workspace client
+        run: npm run typecheck --workspace client --if-present
 
       - name: Build client
         run: npm run build --workspace client
 
       - name: Add SPA fallback
         run: cp client/dist/index.html client/dist/404.html
+
+      - name: Add custom domain
+        run: echo "diamondsuitescrystalriver.com" > client/dist/CNAME
 
       - name: Disable Jekyll
         run: touch client/dist/.nojekyll
@@ -54,6 +67,7 @@ jobs:
         run: |
           test -f client/dist/index.html
           test -f client/dist/404.html
+          test -f client/dist/CNAME
           echo "Build files found successfully."
 
       - name: Configure GitHub Pages
