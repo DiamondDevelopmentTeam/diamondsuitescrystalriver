@@ -18,12 +18,12 @@ export function Contact() {
           <aside className="contact-details">
             <p className="eyebrow">Contact Details</p>
             <h2 className="script-heading">We would love to hear from you</h2>
-            <a href={site.mapsUrl} target="_blank" rel="noreferrer"><MapPin /><span>{site.addressLine1}<br />{site.addressLine2}</span></a>
+            <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer"><MapPin /><span>{site.addressLine1}<br />{site.addressLine2}</span></a>
             <a href={site.phoneHref}><Phone />{site.phoneDisplay}</a>
             <a href={`mailto:${site.email}`}><Mail />{site.email}</a>
             <div className="contact-socials">
-              <a href={site.facebookUrl} target="_blank" rel="noreferrer" aria-label="Facebook"><Facebook /></a>
-              <a href={site.instagramUrl} target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram /></a>
+              <a href={site.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook"><Facebook /></a>
+              <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram"><Instagram /></a>
             </div>
             <div className="map-frame">
               <iframe title="Diamond Suites Crystal River map" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=825%20N%20Citrus%20Ave%20Crystal%20River%20FL%2034428&output=embed" />
@@ -43,7 +43,7 @@ export function Contact() {
           <h2 className="script-heading centered">Three destinations, one Diamond standard</h2>
           <div className="location-grid">
             {locations.map((location) => (
-              <a key={location.name} href={location.href} target={location.href === '/' ? undefined : '_blank'} rel={location.href === '/' ? undefined : 'noreferrer'}>
+              <a key={location.name} href={location.href} target={location.href === '/' ? undefined : '_blank'} rel={location.href === '/' ? undefined : 'noopener noreferrer'}>
                 <MapPin />
                 <h3>{location.name}</h3>
                 <p>{location.address}</p>

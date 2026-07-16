@@ -25,7 +25,7 @@ export function About() {
             <p>Diamond Suites was founded by Veronica Lake, whose passion for beauty and wellness inspired her to create elegant, professional spaces where clients and providers can thrive.</p>
             <p>From Ocala to Downtown and now Crystal River, each Diamond Suites location reflects a commitment to thoughtful design, comfort, and quality. Every detail, from the lighting to the layout, is chosen to create an inviting environment where professionals can offer exceptional care.</p>
           </div>
-          <img className="feature-image" src="/images/lobby-wide.jpg" alt="Diamond Suites reception and waiting area" />
+          <img className="feature-image" loading="lazy" src="/images/lobby-wide.jpg" alt="Diamond Suites reception and waiting area" />
         </div>
       </section>
 

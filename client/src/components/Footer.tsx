@@ -18,7 +18,7 @@ export function Footer() {
             className="footer-logo-card"
             href="https://diamondsuitesdowntownocala.com/"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="Visit Diamond Suites Downtown Ocala"
           >
             <BrandAsset
@@ -35,7 +35,7 @@ export function Footer() {
             className="footer-logo-card"
             href="https://diamondsuitesocala.com/"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="Visit Diamond Suites Ocala"
           >
             <BrandAsset
@@ -57,7 +57,7 @@ export function Footer() {
 
         <div className="footer-contact">
           <h2>Contact</h2>
-          <a href={site.mapsUrl} target="_blank" rel="noreferrer">
+          <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
             <MapPin aria-hidden="true" />
             <span>{site.addressLine1}<br />{site.addressLine2}</span>
           </a>
@@ -65,8 +65,8 @@ export function Footer() {
           <a href={`mailto:${site.email}`}><Mail aria-hidden="true" /> <span>{site.email}</span></a>
 
           <div className="footer-socials" aria-label="Social media">
-            <a href={site.facebookUrl} target="_blank" rel="noreferrer" aria-label="Visit Facebook"><Facebook /></a>
-            <a href={site.instagramUrl} target="_blank" rel="noreferrer" aria-label="Visit Instagram"><Instagram /></a>
+            <a href={site.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Visit Facebook"><Facebook /></a>
+            <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Visit Instagram"><Instagram /></a>
           </div>
         </div>
       </div>

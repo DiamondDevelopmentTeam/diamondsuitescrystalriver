@@ -22,7 +22,7 @@ export function Suites() {
 
       <section className="marble-surface section-space">
         <div className="container split-layout">
-          <img className="feature-image feature-image--portrait" src="/images/hallway.webp" alt="Hallway leading to private suites" />
+          <img className="feature-image feature-image--portrait" loading="lazy" src="/images/hallway.webp" alt="Hallway leading to private suites" />
           <div className="section-copy reveal-up">
             <p className="eyebrow">Suites at Crystal River</p>
             <h2 className="script-heading">A refined space for your business to grow</h2>

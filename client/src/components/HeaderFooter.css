@@ -27,20 +27,12 @@
 }
 
 .crystal-header .top-header__inner {
-  grid-template-columns: minmax(315px, 0.9fr) minmax(640px, 1.55fr) auto;
-  gap: clamp(18px, 2vw, 34px);
+  grid-template-columns: minmax(255px, 0.78fr) minmax(0, 1.5fr) auto;
+  gap: clamp(12px, 1.35vw, 24px);
 }
 
 .crystal-header__brand {
-  display: flex;
-  min-height: 84px;
-  align-items: center;
-  padding: 10px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.78);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.3);
-  transition: min-height 240ms ease, padding 240ms ease, transform 180ms ease;
+  min-width: 0;
 }
 
 .crystal-header__brand:hover {
@@ -48,7 +40,10 @@
 }
 
 .crystal-header .brand-logo {
-  width: min(100%, 505px);
+  width: min(100%, 430px);
+  max-height: 76px;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .crystal-header .logo-fallback {
@@ -56,11 +51,15 @@
 }
 
 .crystal-header .contact-strip {
-  gap: clamp(18px, 2vw, 30px);
+  min-width: 0;
+  gap: clamp(10px, 1.15vw, 20px);
 }
 
 .crystal-header .contact-chip {
+  min-width: 0;
   color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(0.78rem, 0.78vw, 0.95rem);
+  line-height: 1.25;
 }
 
 .crystal-header .contact-chip:hover {
@@ -69,9 +68,9 @@
 
 .crystal-header .contact-chip__icon {
   display: grid;
-  width: 42px;
-  height: 42px;
-  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
   place-items: center;
   border: 1px solid rgba(234, 210, 141, 0.72);
   border-radius: 50%;
@@ -80,26 +79,39 @@
 }
 
 .crystal-header .contact-chip__icon svg {
-  width: 21px;
-  height: 21px;
+  width: 18px;
+  height: 18px;
   fill: none;
   stroke: currentColor;
 }
 
 .crystal-header .contact-chip strong {
   color: var(--gold-light);
-  letter-spacing: 0.02em;
+  font-size: clamp(0.82rem, 0.84vw, 1rem);
+  letter-spacing: 0.01em;
+}
+
+/* Keeps long contact details, especially the email, on one clean line. */
+.crystal-header .contact-chip span,
+.crystal-header .contact-chip a,
+.crystal-header .contact-chip p {
+  min-width: 0;
+}
+
+.crystal-header .contact-chip[href^='mailto:'],
+.crystal-header a[href^='mailto:'].contact-chip,
+.crystal-header .contact-chip a[href^='mailto:'] {
+  white-space: nowrap;
+  font-size: clamp(0.72rem, 0.72vw, 0.9rem);
+  letter-spacing: -0.015em;
 }
 
 .crystal-header .social-block {
   color: #fff;
 }
 
-.crystal-header .social-links a {
-  border: 1px solid rgba(234, 210, 141, 0.72);
-  background: rgba(0, 0, 0, 0.38);
-  color: #fff;
-  transition: color 180ms ease, background 180ms ease, transform 180ms ease;
+.crystal-header .social-links {
+  gap: 10px;
 }
 
 .crystal-header .social-links a:hover {
@@ -110,6 +122,7 @@
 
 .crystal-header .salon-etiquette-link {
   color: var(--gold-light);
+  font-size: 0.86rem;
   text-decoration: underline;
   text-decoration-color: rgba(234, 210, 141, 0.42);
   text-underline-offset: 4px;
@@ -166,14 +179,19 @@
   padding: 5px 12px;
 }
 
+.site-header--compact.crystal-header .brand-logo {
+  max-height: 56px;
+}
+
 .site-header--compact.crystal-header .contact-chip__icon {
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
+  flex-basis: 30px;
 }
 
 .site-header--compact.crystal-header .contact-chip__icon svg {
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
 }
 
 .site-header--compact.crystal-header .main-nav__links a::after {
@@ -209,10 +227,6 @@
   width: min(520px, 100%);
   min-height: 104px;
   align-items: center;
-  padding: 12px 18px;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
 }
 
 .crystal-mobile-menu .mobile-menu__links a {
@@ -259,22 +273,8 @@
   gap: 16px;
 }
 
-.crystal-footer .footer-logo-card {
-  display: flex;
-  width: min(100%, 470px);
-  min-height: 82px;
-  align-items: center;
-  padding: 12px 18px;
-  border: 1px solid rgba(255, 255, 255, 0.76);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.94);
-  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
-  transition: transform 180ms ease, box-shadow 180ms ease;
-}
-
 .crystal-footer .footer-logo-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.36);
 }
 
 .crystal-footer .footer-logo-card--primary {
@@ -299,12 +299,6 @@
   font-size: 1.3rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-}
-
-.crystal-footer .footer-nav a,
-.crystal-footer .footer-contact a {
-  color: rgba(255, 255, 255, 0.88);
-  transition: color 180ms ease, transform 180ms ease;
 }
 
 .crystal-footer .footer-nav a:hover,
@@ -341,22 +335,54 @@
   backdrop-filter: blur(4px);
 }
 
-.crystal-footer .footer-bottom {
-  border-top: 0;
-  color: rgba(255, 255, 255, 0.76);
-}
-
 .crystal-footer .footer-bottom a {
   color: var(--gold-light);
 }
 
-@media (max-width: 1280px) {
+/* Large laptop and medium desktop widths */
+@media (max-width: 1500px) {
   .crystal-header .top-header__inner {
-    grid-template-columns: minmax(285px, 0.88fr) minmax(470px, 1.3fr) auto;
+    grid-template-columns: minmax(230px, 0.72fr) minmax(0, 1.48fr) auto;
+    gap: 12px;
   }
 
-  .crystal-header__brand {
-    padding-inline: 12px;
+  .crystal-header .brand-logo {
+    width: min(100%, 380px);
+    max-height: 68px;
+  }
+
+  .crystal-header .contact-strip {
+    gap: 10px;
+  }
+
+  .crystal-header .contact-chip {
+    font-size: 0.78rem;
+  }
+
+  .crystal-header .contact-chip strong {
+    font-size: 0.86rem;
+  }
+
+  .crystal-header .contact-chip[href^='mailto:'],
+  .crystal-header a[href^='mailto:'].contact-chip,
+  .crystal-header .contact-chip a[href^='mailto:'] {
+    font-size: 0.74rem;
+  }
+
+  .crystal-header .contact-chip__icon {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .crystal-header .top-header__inner {
+    grid-template-columns: minmax(215px, 0.68fr) minmax(0, 1.35fr) auto;
+  }
+
+  .crystal-header .brand-logo {
+    width: min(100%, 350px);
   }
 }
 
@@ -370,6 +396,12 @@
     width: min(520px, calc(100vw - 100px));
     min-height: 62px;
     padding: 7px 12px;
+  }
+
+  .crystal-header .brand-logo,
+  .site-header--compact.crystal-header .brand-logo {
+    width: min(100%, 430px);
+    max-height: 58px;
   }
 
   .crystal-footer .footer-inner {

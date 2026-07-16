@@ -11,12 +11,34 @@ export function Header() {
   const location = useLocation()
 
   useEffect(() => {
-    const handleScroll = () => setIsCompact(window.scrollY > 48)
+    let frame = 0
 
-    handleScroll()
+    const updateHeaderState = () => {
+      setIsCompact((current) => {
+        if (!current && window.scrollY > 72) {
+          return true
+        }
+
+        if (current && window.scrollY < 28) {
+          return false
+        }
+
+        return current
+      })
+    }
+
+    const handleScroll = () => {
+      window.cancelAnimationFrame(frame)
+      frame = window.requestAnimationFrame(updateHeaderState)
+    }
+
+    updateHeaderState()
     window.addEventListener('scroll', handleScroll, { passive: true })
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.cancelAnimationFrame(frame)
+      window.removeEventListener('scroll', handleScroll)
+    }
   }, [])
 
   useEffect(() => {
@@ -41,63 +63,65 @@ export function Header() {
   }, [menuOpen])
 
   return (
-    <header className={`site-header crystal-header ${isCompact ? 'site-header--compact' : ''}`}>
-      <div className="top-header crystal-header__top">
-        <div className="top-header__inner container">
-          <Link className="brand-link crystal-header__brand" to="/" aria-label="Diamond Suites Crystal River home">
-            <LogoImage className="brand-logo" />
-          </Link>
+    <>
+      <header className={`site-header crystal-header ${isCompact ? 'site-header--compact' : ''}`}>
+        <div className="top-header crystal-header__top">
+          <div className="top-header__inner container">
+            <Link className="brand-link crystal-header__brand" to="/" aria-label="Diamond Suites Crystal River home">
+              <LogoImage className="brand-logo" />
+            </Link>
 
-          <div className="contact-strip" aria-label="Contact information">
-            <a href={site.phoneHref} className="contact-chip">
-              <span className="contact-chip__icon" aria-hidden="true"><Phone /></span>
-              <span><strong>Call Us</strong>{site.phoneDisplay}</span>
-            </a>
+            <div className="contact-strip" aria-label="Contact information">
+              <a href={site.phoneHref} className="contact-chip">
+                <span className="contact-chip__icon" aria-hidden="true"><Phone /></span>
+                <span><strong>Call Us</strong>{site.phoneDisplay}</span>
+              </a>
 
-            <a href={`mailto:${site.email}`} className="contact-chip contact-chip--email">
-              <span className="contact-chip__icon" aria-hidden="true"><Mail /></span>
-              <span><strong>Email</strong>{site.email}</span>
-            </a>
+              <a href={`mailto:${site.email}`} className="contact-chip contact-chip--email">
+                <span className="contact-chip__icon" aria-hidden="true"><Mail /></span>
+                <span><strong>Email</strong>{site.email}</span>
+              </a>
 
-            <a href={site.mapsUrl} target="_blank" rel="noreferrer" className="contact-chip">
-              <span className="contact-chip__icon" aria-hidden="true"><MapPin /></span>
-              <span><strong>Location</strong>{site.addressLine1}<br />{site.addressLine2}</span>
-            </a>
-          </div>
-
-          <div className="social-block">
-            <div className="social-links">
-              <a href={site.facebookUrl} target="_blank" rel="noreferrer" aria-label="Visit Facebook"><Facebook /></a>
-              <a href={site.instagramUrl} target="_blank" rel="noreferrer" aria-label="Visit Instagram"><Instagram /></a>
+              <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer" className="contact-chip">
+                <span className="contact-chip__icon" aria-hidden="true"><MapPin /></span>
+                <span><strong>Location</strong>{site.addressLine1}<br />{site.addressLine2}</span>
+              </a>
             </div>
-            <Link className="salon-etiquette-link" to="/salon-etiquette">Salon Etiquette</Link>
-          </div>
 
-          <button
-            className="mobile-menu-button"
-            type="button"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Open navigation"
-            aria-expanded={menuOpen}
-            aria-controls="mobile-navigation"
-          >
-            <Menu />
-          </button>
-        </div>
-      </div>
+            <div className="social-block">
+              <div className="social-links">
+                <a href={site.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Visit Facebook"><Facebook /></a>
+                <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Visit Instagram"><Instagram /></a>
+              </div>
+              <Link className="salon-etiquette-link" to="/salon-etiquette">Salon Etiquette</Link>
+            </div>
 
-      <nav className="main-nav crystal-header__nav" aria-label="Main navigation">
-        <div className="main-nav__inner container">
-          <div className="main-nav__links">
-            {navItems.map((item) => (
-              <NavLink key={item.to} to={item.to} end={item.to === '/'}>
-                {item.label}
-              </NavLink>
-            ))}
+            <button
+              className="mobile-menu-button"
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Open navigation"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-navigation"
+            >
+              <Menu />
+            </button>
           </div>
-          <a className="nav-call" href={site.phoneHref}><Phone aria-hidden="true" /> Call Us</a>
         </div>
-      </nav>
+
+        <nav className="main-nav crystal-header__nav" aria-label="Main navigation">
+          <div className="main-nav__inner container">
+            <div className="main-nav__links">
+              {navItems.map((item) => (
+                <NavLink key={item.to} to={item.to} end={item.to === '/'}>
+                  {item.label}
+                </NavLink>
+              ))}
+            </div>
+            <a className="nav-call" href={site.phoneHref}><Phone aria-hidden="true" /> Call Us</a>
+          </div>
+        </nav>
+      </header>
 
       <div
         id="mobile-navigation"
@@ -121,6 +145,6 @@ export function Header() {
 
         <a className="button button--gold" href={site.phoneHref}><Phone aria-hidden="true" /> Call {site.phoneDisplay}</a>
       </div>
-    </header>
+    </>
   )
 }

@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight, MapPin, Sparkles, Users, WandSparkles } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import type { PointerEvent } from 'react'
 import { Link } from 'react-router-dom'
 
 const lobbySlides = [
@@ -22,13 +23,83 @@ const benefits = [
   { icon: MapPin, title: 'Convenient Location', text: 'Easy access, complimentary parking, and a serene Crystal River setting away from the bustle.' },
 ]
 
-export function Home() {
-  const [slide, setSlide] = useState(0)
+function usePrefersReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
 
   useEffect(() => {
-    const timer = window.setInterval(() => setSlide((current) => (current + 1) % lobbySlides.length), 5200)
-    return () => window.clearInterval(timer)
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches)
+
+    updatePreference()
+    mediaQuery.addEventListener('change', updatePreference)
+
+    return () => mediaQuery.removeEventListener('change', updatePreference)
   }, [])
+
+  return prefersReducedMotion
+}
+
+export function Home() {
+  const [slide, setSlide] = useState(0)
+  const [isCarouselPaused, setCarouselPaused] = useState(false)
+  const [isTabHidden, setTabHidden] = useState(false)
+  const prefersReducedMotion = usePrefersReducedMotion()
+  const touchStartX = useRef<number | null>(null)
+  const lastSlideChange = useRef(0)
+
+  useEffect(() => {
+    const handleVisibilityChange = () => setTabHidden(document.hidden)
+
+    handleVisibilityChange()
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
+  }, [])
+
+  useEffect(() => {
+    if (isCarouselPaused || isTabHidden || prefersReducedMotion) {
+      return
+    }
+
+    const timer = window.setInterval(() => setSlide((current) => (current + 1) % lobbySlides.length), 5600)
+    return () => window.clearInterval(timer)
+  }, [isCarouselPaused, isTabHidden, prefersReducedMotion])
+
+  const changeSlide = (nextSlide: number) => {
+    const now = window.performance.now()
+
+    if (now - lastSlideChange.current < 420) {
+      return
+    }
+
+    lastSlideChange.current = now
+    setSlide((nextSlide + lobbySlides.length) % lobbySlides.length)
+  }
+
+  const handleSwipeStart = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === 'mouse') {
+      return
+    }
+
+    touchStartX.current = event.clientX
+    setCarouselPaused(true)
+  }
+
+  const handleSwipeEnd = (event: PointerEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null) {
+      return
+    }
+
+    const distance = event.clientX - touchStartX.current
+    touchStartX.current = null
+    setCarouselPaused(false)
+
+    if (Math.abs(distance) < 42) {
+      return
+    }
+
+    changeSlide(slide + (distance < 0 ? 1 : -1))
+  }
 
   return (
     <>
@@ -43,14 +114,47 @@ export function Home() {
 
       <section className="intro-section marble-surface section-space">
         <div className="container split-layout">
-          <div className="image-stack reveal-up">
+          <div
+            className="image-stack image-carousel"
+            role="region"
+            aria-roledescription="carousel"
+            aria-label="Diamond Suites Crystal River interior photos"
+            onPointerDown={handleSwipeStart}
+            onPointerUp={handleSwipeEnd}
+            onPointerCancel={() => {
+              touchStartX.current = null
+              setCarouselPaused(false)
+            }}
+            onMouseEnter={() => setCarouselPaused(true)}
+            onMouseLeave={() => setCarouselPaused(false)}
+            onFocus={() => setCarouselPaused(true)}
+            onBlur={() => setCarouselPaused(false)}
+          >
             <div className="image-stack__frame" />
-            <img src={lobbySlides[slide]} alt="Interior of Diamond Suites Crystal River" />
-            <button className="slider-arrow slider-arrow--left" type="button" onClick={() => setSlide((slide - 1 + lobbySlides.length) % lobbySlides.length)} aria-label="Previous interior photo"><ChevronLeft /></button>
-            <button className="slider-arrow slider-arrow--right" type="button" onClick={() => setSlide((slide + 1) % lobbySlides.length)} aria-label="Next interior photo"><ChevronRight /></button>
+            <div className="image-stack__slides" aria-live="polite">
+              {lobbySlides.map((image, index) => (
+                <img
+                  key={image}
+                  loading="lazy"
+                  src={image}
+                  alt={`Interior of Diamond Suites Crystal River ${index + 1}`}
+                  className={index === slide ? 'is-active' : ''}
+                  aria-hidden={index !== slide}
+                />
+              ))}
+            </div>
+            <button className="slider-arrow slider-arrow--left" type="button" onClick={() => changeSlide(slide - 1)} aria-label="Previous interior photo"><ChevronLeft aria-hidden="true" /></button>
+            <button className="slider-arrow slider-arrow--right" type="button" onClick={() => changeSlide(slide + 1)} aria-label="Next interior photo"><ChevronRight aria-hidden="true" /></button>
             <div className="slider-dots" aria-label="Interior photo selector">
               {lobbySlides.map((item, index) => (
-                <button key={item} type="button" className={index === slide ? 'active' : ''} onClick={() => setSlide(index)} aria-label={`View interior photo ${index + 1}`} />
+                <button
+                  key={item}
+                  type="button"
+                  className={index === slide ? 'active' : ''}
+                  onClick={() => changeSlide(index)}
+                  aria-label={`View interior photo ${index + 1}`}
+                  aria-current={index === slide ? 'true' : undefined}
+                />
               ))}
             </div>
           </div>
