@@ -22,7 +22,7 @@ jobs:
   build:
     name: Build client
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
       - name: Checkout repository
@@ -32,20 +32,24 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: 22
-          cache: npm
-          cache-dependency-path: package-lock.json
-          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
 
-      - name: Configure npm
+      - name: Show initial versions
         run: |
-          npm config set registry https://registry.npmjs.org/
-          npm config set fetch-retries 5
-          npm config set fetch-retry-mintimeout 20000
-          npm config set fetch-retry-maxtimeout 120000
-          npm config set fetch-timeout 300000
+          node --version
+          npm --version
+
+      - name: Use stable npm version
+        run: npm install --global npm@10.8.0 --no-audit --no-fund
+
+      - name: Reset npm cache
+        run: npm cache clean --force
+
+      - name: Show pinned npm version
+        run: npm --version
 
       - name: Install dependencies
-        run: npm ci --no-audit --no-fund
+        run: npm ci --no-audit --no-fund --prefer-online
         timeout-minutes: 15
 
       - name: Type-check client
@@ -63,7 +67,7 @@ jobs:
       - name: Disable Jekyll
         run: touch client/dist/.nojekyll
 
-      - name: Verify build
+      - name: Verify build output
         run: |
           test -f client/dist/index.html
           test -f client/dist/404.html
@@ -77,6 +81,15 @@ jobs:
         uses: actions/upload-pages-artifact@v4
         with:
           path: client/dist
+
+      - name: Save npm logs when installation fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-debug-logs
+          path: /home/runner/.npm/_logs/
+          if-no-files-found: ignore
+          retention-days: 5
 
   deploy:
     name: Deploy website
