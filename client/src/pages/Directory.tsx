@@ -1,11 +1,12 @@
 import { Phone } from 'lucide-react'
 import { PageHero } from '../components/PageHero'
 import { professionals } from '../data/site'
+import { assetUrl } from '../utils/assetUrl'
 
 export function Directory() {
   return (
     <>
-      <PageHero eyebrow="Seven Private Suites" title="Meet Our Professionals" image="/images/directory-banner.webp" description="Discover the independent beauty and wellness specialists who make Diamond Suites Crystal River shine." />
+      <PageHero eyebrow="Seven Private Suites" title="Meet Our Professionals" image="images/directory-banner.webp" description="Discover the independent beauty and wellness specialists who make Diamond Suites Crystal River shine." />
       <section className="marble-surface section-space">
         <div className="container directory-intro centered">
           <p className="eyebrow">The Crystal River Directory</p>
@@ -16,7 +17,7 @@ export function Directory() {
           {professionals.map((professional) => (
             <article className="professional-card" key={professional.suite}>
               <div className="professional-card__image">
-                <img loading="lazy" src={professional.image} alt={professional.name} />
+                <img loading="lazy" src={assetUrl(professional.image)} alt={professional.name} />
                 <span>Suite {professional.suite}</span>
               </div>
               <div className="professional-card__body">

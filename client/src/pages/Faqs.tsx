@@ -17,7 +17,7 @@ export function Faqs() {
 
   return (
     <>
-      <PageHero eyebrow="Helpful Information" title="Frequently Asked Questions" image="/images/directory-banner.webp" description="A few quick answers before your visit or leasing inquiry." />
+      <PageHero eyebrow="Helpful Information" title="Frequently Asked Questions" image="images/directory-banner.webp" description="A few quick answers before your visit or leasing inquiry." />
       <section className="marble-surface section-space">
         <div className="container faq-layout">
           <div className="faq-intro">

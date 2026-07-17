@@ -2,18 +2,19 @@ import { ChevronLeft, ChevronRight, MapPin, Sparkles, Users, WandSparkles } from
 import { useEffect, useRef, useState } from 'react'
 import type { PointerEvent } from 'react'
 import { Link } from 'react-router-dom'
+import { assetUrl } from '../utils/assetUrl'
 
 const lobbySlides = [
-  '/images/lobby-portrait.jpg',
-  '/images/lobby-window.jpg',
-  '/images/lobby-wide.jpg',
+  'images/lobby-portrait.jpg',
+  'images/lobby-window.jpg',
+  'images/lobby-wide.jpg',
 ]
 
 const services = [
-  { title: 'Esthetician', image: '/images/service-esthetician.jpeg' },
-  { title: 'Nail Technician', image: '/images/service-nails.jpg' },
-  { title: 'Eye Lashes', image: '/images/service-lashes.jpg' },
-  { title: 'Hair Stylist', image: '/images/service-hair.jpg' },
+  { title: 'Esthetician', image: 'images/service-esthetician.jpeg' },
+  { title: 'Nail Technician', image: 'images/service-nails.jpg' },
+  { title: 'Eye Lashes', image: 'images/service-lashes.jpg' },
+  { title: 'Hair Stylist', image: 'images/service-hair.jpg' },
 ]
 
 const benefits = [
@@ -104,7 +105,7 @@ export function Home() {
   return (
     <>
       <section className="home-hero">
-        <img src="/images/hero-lobby.webp" alt="Diamond Suites Crystal River lobby" />
+        <img src={assetUrl('images/hero-lobby.webp')} alt="Diamond Suites Crystal River lobby" />
         <div className="home-hero__panel reveal-up">
           <p>Welcome to</p>
           <h1>Diamond Crystal River</h1>
@@ -136,7 +137,7 @@ export function Home() {
                 <img
                   key={image}
                   loading="lazy"
-                  src={image}
+                  src={assetUrl(image)}
                   alt={`Interior of Diamond Suites Crystal River ${index + 1}`}
                   className={index === slide ? 'is-active' : ''}
                   aria-hidden={index !== slide}
@@ -176,7 +177,7 @@ export function Home() {
         <div className="services-track container">
           {services.map((service) => (
             <Link to="/directory" className="service-card" key={service.title}>
-              <img loading="lazy" src={service.image} alt={service.title} />
+              <img loading="lazy" src={assetUrl(service.image)} alt={service.title} />
               <h3>{service.title}</h3>
             </Link>
           ))}
@@ -185,7 +186,7 @@ export function Home() {
 
       <section className="excellence-section">
         <div className="excellence-image">
-          <img loading="lazy" src="/images/lobby-portrait.jpg" alt="Elegant seating area at Diamond Suites Crystal River" />
+          <img loading="lazy" src={assetUrl('images/lobby-portrait.jpg')} alt="Elegant seating area at Diamond Suites Crystal River" />
         </div>
         <div className="excellence-copy section-space reveal-up">
           <h2 className="script-heading">Where Beauty Meets Excellence</h2>
@@ -213,16 +214,16 @@ export function Home() {
             <p>From lash and brow artistry to hair, nails, and skincare, a variety of experts are ready to help you look and feel your best.</p>
           </div>
           <div className="collage-grid">
-            <img loading="lazy" src="/images/coffee-station.jpg" alt="Coffee station" />
-            <img loading="lazy" src="/images/service-hair.jpg" alt="Hair styling" />
-            <img loading="lazy" src="/images/service-nails.jpg" alt="Nail service" />
-            <img loading="lazy" src="/images/hero-lobby.webp" alt="Salon lobby" />
+            <img loading="lazy" src={assetUrl('images/coffee-station.jpg')} alt="Coffee station" />
+            <img loading="lazy" src={assetUrl('images/service-hair.jpg')} alt="Hair styling" />
+            <img loading="lazy" src={assetUrl('images/service-nails.jpg')} alt="Nail service" />
+            <img loading="lazy" src={assetUrl('images/hero-lobby.webp')} alt="Salon lobby" />
           </div>
         </div>
       </section>
 
       <section className="final-cta">
-        <img loading="lazy" src="/images/building.webp" alt="Diamond Suites Crystal River exterior" />
+        <img loading="lazy" src={assetUrl('images/building.webp')} alt="Diamond Suites Crystal River exterior" />
         <div>
           <h2 className="script-heading">The Next Chapter in Beauty and Wellness Excellence</h2>
           <Link className="button button--gold" to="/contact">Contact Us Today</Link>

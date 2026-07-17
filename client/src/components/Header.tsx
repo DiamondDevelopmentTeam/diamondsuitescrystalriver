@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+import type { CSSProperties } from 'react'
 import { Facebook, Instagram, Mail, MapPin, Menu, Phone, X } from 'lucide-react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { navItems, site } from '../data/site'
+import { assetUrl } from '../utils/assetUrl'
 import { LogoImage } from './LogoImage'
 import './HeaderFooter.css'
 
@@ -62,9 +64,13 @@ export function Header() {
     }
   }, [menuOpen])
 
+  const marbleStyle = {
+    '--crystal-marble-background': `url("${assetUrl('images/blackMarble.jpg')}")`,
+  } as CSSProperties
+
   return (
     <>
-      <header className={`site-header crystal-header ${isCompact ? 'site-header--compact' : ''}`}>
+      <header className={`site-header crystal-header ${isCompact ? 'site-header--compact' : ''}`} style={marbleStyle}>
         <div className="top-header crystal-header__top">
           <div className="top-header__inner container">
             <Link className="brand-link crystal-header__brand" to="/" aria-label="Diamond Suites Crystal River home">
@@ -126,6 +132,7 @@ export function Header() {
       <div
         id="mobile-navigation"
         className={`mobile-menu crystal-mobile-menu ${menuOpen ? 'mobile-menu--open' : ''}`}
+        style={marbleStyle}
         aria-hidden={!menuOpen}
       >
         <button type="button" onClick={() => setMenuOpen(false)} aria-label="Close navigation"><X /></button>

@@ -94,7 +94,7 @@ p {
   background-color: #f8f8f8;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.82)),
-    url('/images/marblebackground.jpg'),
+    var(--marble-surface-background),
     radial-gradient(circle at 15% 25%, rgba(70, 70, 70, 0.08), transparent 24%),
     radial-gradient(circle at 80% 60%, rgba(40, 40, 40, 0.07), transparent 20%);
   background-size: cover, cover, 500px 500px, 540px 540px;

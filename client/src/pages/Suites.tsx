@@ -1,6 +1,7 @@
 import { Gem, Lightbulb, ShieldCheck, Snowflake, Sparkles, Star, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { PageHero } from '../components/PageHero'
+import { assetUrl } from '../utils/assetUrl'
 
 const amenities = [
   { icon: Sparkles, text: 'Modern finishes and elegant décor' },
@@ -18,11 +19,11 @@ const values = [
 export function Suites() {
   return (
     <>
-      <PageHero eyebrow="Private Salon Suites" title="Private. Polished. Perfectly Designed." image="/images/suites-banner.webp" description="Seven elegant suites crafted to support independent beauty and wellness professionals." />
+      <PageHero eyebrow="Private Salon Suites" title="Private. Polished. Perfectly Designed." image="images/suites-banner.webp" description="Seven elegant suites crafted to support independent beauty and wellness professionals." />
 
       <section className="marble-surface section-space">
         <div className="container split-layout">
-          <img className="feature-image feature-image--portrait" loading="lazy" src="/images/hallway.webp" alt="Hallway leading to private suites" />
+          <img className="feature-image feature-image--portrait" loading="lazy" src={assetUrl('images/hallway.webp')} alt="Hallway leading to private suites" />
           <div className="section-copy reveal-up">
             <p className="eyebrow">Suites at Crystal River</p>
             <h2 className="script-heading">A refined space for your business to grow</h2>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { assetUrl } from '../utils/assetUrl'
 
 type BrandAssetProps = {
   src: string
@@ -9,12 +10,22 @@ type BrandAssetProps = {
   fallbackSubtitle: string
 }
 
-export function BrandAsset({ src, alt, className, fallbackClassName, fallbackTitle, fallbackSubtitle }: BrandAssetProps) {
+export function BrandAsset({
+  src,
+  alt,
+  className,
+  fallbackClassName,
+  fallbackTitle,
+  fallbackSubtitle,
+}: BrandAssetProps) {
   const [failed, setFailed] = useState(false)
 
   if (failed) {
     return (
-      <span className={`partner-logo ${fallbackClassName ?? ''}`} aria-label={alt}>
+      <span
+        className={`partner-logo ${fallbackClassName ?? ''}`}
+        aria-label={alt}
+      >
         <span aria-hidden="true">◆</span>
         <strong>{fallbackTitle}</strong>
         <small>{fallbackSubtitle}</small>
@@ -22,5 +33,12 @@ export function BrandAsset({ src, alt, className, fallbackClassName, fallbackTit
     )
   }
 
-  return <img className={className} src={src} alt={alt} onError={() => setFailed(true)} />
+  return (
+    <img
+      className={className}
+      src={assetUrl(src)}
+      alt={alt}
+      onError={() => setFailed(true)}
+    />
+  )
 }

@@ -1,6 +1,7 @@
 /*
   Header + footer skin for blackMarble.jpg.
-  Put the image at: client/public/images/blackMarble.jpg
+  Put the image in the public image folder as blackMarble.jpg.
+  React supplies the final base-safe URL with --crystal-marble-background.
 */
 
 .crystal-header__top,
@@ -9,7 +10,7 @@
   background-color: #070707;
   background-image:
     linear-gradient(110deg, rgba(0, 0, 0, 0.72), rgba(10, 10, 10, 0.56)),
-    url('/images/blackMarble.jpg');
+    var(--crystal-marble-background);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { assetUrl } from '../utils/assetUrl'
 
 type LogoImageProps = {
   className?: string
@@ -6,11 +7,14 @@ type LogoImageProps = {
 }
 
 const logoSources = [
-  '/images/DiamondSuitesCrystalRiverLogo.gif',
-  '/images/DiamondSuitesCrystalRiverLogo.webp',
+  'images/DiamondSuitesCrystalRiverLogo.gif',
+  'images/DiamondSuitesCrystalRiverLogo.webp',
 ]
 
-export function LogoImage({ className, alt = 'Diamond Suites Crystal River' }: LogoImageProps) {
+export function LogoImage({
+  className,
+  alt = 'Diamond Suites Crystal River',
+}: LogoImageProps) {
   const [sourceIndex, setSourceIndex] = useState(0)
   const [failed, setFailed] = useState(false)
 
@@ -18,6 +22,7 @@ export function LogoImage({ className, alt = 'Diamond Suites Crystal River' }: L
     return (
       <span className={`logo-fallback ${className ?? ''}`} aria-label={alt}>
         <span aria-hidden="true">◆</span>
+
         <span>
           DIAMOND SUITES
           <small>CRYSTAL RIVER</small>
@@ -29,7 +34,7 @@ export function LogoImage({ className, alt = 'Diamond Suites Crystal River' }: L
   return (
     <img
       className={className}
-      src={logoSources[sourceIndex]}
+      src={assetUrl(logoSources[sourceIndex])}
       alt={alt}
       onError={() => {
         if (sourceIndex < logoSources.length - 1) {

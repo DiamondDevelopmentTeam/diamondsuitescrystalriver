@@ -1,13 +1,19 @@
+import type { CSSProperties } from 'react'
 import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { navItems, site } from '../data/site'
+import { assetUrl } from '../utils/assetUrl'
 import { BrandAsset } from './BrandAsset'
 import { LogoImage } from './LogoImage'
 import './HeaderFooter.css'
 
 export function Footer() {
+  const marbleStyle = {
+    '--crystal-marble-background': `url("${assetUrl('images/blackMarble.jpg')}")`,
+  } as CSSProperties
+
   return (
-    <footer className="site-footer crystal-footer">
+    <footer className="site-footer crystal-footer" style={marbleStyle}>
       <div className="footer-inner container">
         <div className="footer-brands" aria-label="Diamond Suites locations">
           <Link className="footer-logo-card footer-logo-card--primary" to="/" aria-label="Diamond Suites Crystal River home">
@@ -22,7 +28,7 @@ export function Footer() {
             aria-label="Visit Diamond Suites Downtown Ocala"
           >
             <BrandAsset
-              src="/images/DiamondSuitesDownTownOcalaLogo.gif"
+              src="images/DiamondSuitesDownTownOcalaLogo.gif"
               alt="Diamond Suites Downtown Ocala"
               className="partner-logo-image"
               fallbackClassName="partner-logo--pink"
@@ -39,7 +45,7 @@ export function Footer() {
             aria-label="Visit Diamond Suites Ocala"
           >
             <BrandAsset
-              src="/images/DiamondSuitesOcalaLogo.gif"
+              src="images/DiamondSuitesOcalaLogo.gif"
               alt="Diamond Suites Ocala"
               className="partner-logo-image"
               fallbackClassName="partner-logo--blue"
