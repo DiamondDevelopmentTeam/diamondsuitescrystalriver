@@ -1,16 +1,14 @@
-import { useEffect, useState } from 'react'
-import type { CSSProperties } from 'react'
-import { Facebook, Instagram, Mail, MapPin, Menu, Phone, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ArrowUpRight, Menu, X } from 'lucide-react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { navItems, site } from '../data/site'
-import { assetUrl } from '../utils/assetUrl'
 import { LogoImage } from './LogoImage'
-import './HeaderFooter.css'
 
 export function Header() {
   const [isCompact, setIsCompact] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     let frame = 0
@@ -53,6 +51,7 @@ export function Header() {
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setMenuOpen(false)
+        window.requestAnimationFrame(() => menuButtonRef.current?.focus())
       }
     }
 
@@ -64,94 +63,71 @@ export function Header() {
     }
   }, [menuOpen])
 
-  const marbleStyle = {
-    '--crystal-marble-background': `url("${assetUrl('images/blackMarble.jpg')}")`,
-  } as CSSProperties
-
   return (
     <>
-      <header className={`site-header crystal-header ${isCompact ? 'site-header--compact' : ''}`} style={marbleStyle}>
-        <div className="top-header crystal-header__top">
-          <div className="top-header__inner container">
-            <Link className="brand-link crystal-header__brand" to="/" aria-label="Diamond Suites Crystal River home">
-              <LogoImage className="brand-logo" />
-            </Link>
+      <header className={`site-header ${isCompact ? 'site-header--compact' : ''}`}>
+        <div className="site-header__inner container">
+          <Link className="brand-link" to="/" aria-label="Diamond Suites Crystal River home">
+            <LogoImage className="brand-logo" />
+          </Link>
 
-            <div className="contact-strip" aria-label="Contact information">
-              <a href={site.phoneHref} className="contact-chip">
-                <span className="contact-chip__icon" aria-hidden="true"><Phone /></span>
-                <span><strong>Call Us</strong>{site.phoneDisplay}</span>
-              </a>
+          <nav className="desktop-nav" aria-label="Main navigation">
+            {navItems.map((item) => (
+              <NavLink key={item.to} to={item.to} end={item.to === '/'}>{item.label}</NavLink>
+            ))}
+          </nav>
 
-              <a href={`mailto:${site.email}`} className="contact-chip contact-chip--email">
-                <span className="contact-chip__icon" aria-hidden="true"><Mail /></span>
-                <span><strong>Email</strong>{site.email}</span>
-              </a>
+          <Link className="header-inquiry" to="/contact">
+            Suite inquiry <ArrowUpRight aria-hidden="true" />
+          </Link>
 
-              <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer" className="contact-chip">
-                <span className="contact-chip__icon" aria-hidden="true"><MapPin /></span>
-                <span><strong>Location</strong>{site.addressLine1}<br />{site.addressLine2}</span>
-              </a>
-            </div>
-
-            <div className="social-block">
-              <div className="social-links">
-                <a href={site.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Visit Facebook"><Facebook /></a>
-                <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Visit Instagram"><Instagram /></a>
-              </div>
-              <Link className="salon-etiquette-link" to="/salon-etiquette">Salon Etiquette</Link>
-            </div>
-
-            <button
-              className="mobile-menu-button"
-              type="button"
-              onClick={() => setMenuOpen(true)}
-              aria-label="Open navigation"
-              aria-expanded={menuOpen}
-              aria-controls="mobile-navigation"
-            >
-              <Menu />
-            </button>
-          </div>
+          <button
+            ref={menuButtonRef}
+            className="mobile-menu-button"
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open navigation"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+          ><Menu /></button>
         </div>
-
-        <nav className="main-nav crystal-header__nav" aria-label="Main navigation">
-          <div className="main-nav__inner container">
-            <div className="main-nav__links">
-              {navItems.map((item) => (
-                <NavLink key={item.to} to={item.to} end={item.to === '/'}>
-                  {item.label}
-                </NavLink>
-              ))}
-            </div>
-            <a className="nav-call" href={site.phoneHref}><Phone aria-hidden="true" /> Call Us</a>
-          </div>
-        </nav>
       </header>
 
-      <div
-        id="mobile-navigation"
-        className={`mobile-menu crystal-mobile-menu ${menuOpen ? 'mobile-menu--open' : ''}`}
-        style={marbleStyle}
-        aria-hidden={!menuOpen}
-      >
-        <button type="button" onClick={() => setMenuOpen(false)} aria-label="Close navigation"><X /></button>
+      {menuOpen ? (
+        <div className="mobile-menu-backdrop" onMouseDown={(event) => {
+          if (event.currentTarget === event.target) {
+            setMenuOpen(false)
+            menuButtonRef.current?.focus()
+          }
+        }}>
+          <div id="mobile-navigation" className="mobile-menu" role="dialog" aria-modal="true" aria-label="Main navigation">
+            <div className="mobile-menu__top">
+              <LogoImage className="mobile-menu__logo" />
+              <button autoFocus type="button" onClick={() => {
+                setMenuOpen(false)
+                menuButtonRef.current?.focus()
+              }} aria-label="Close navigation"><X /></button>
+            </div>
 
-        <Link className="crystal-mobile-menu__logo-card" to="/" onClick={() => setMenuOpen(false)}>
-          <LogoImage className="mobile-menu__logo" />
-        </Link>
+            <nav className="mobile-menu__links" aria-label="Mobile navigation">
+              {navItems.map((item) => (
+                <NavLink key={item.to} to={item.to} end={item.to === '/'} onClick={() => setMenuOpen(false)}>
+                  <span>{item.label}</span><ArrowUpRight aria-hidden="true" />
+                </NavLink>
+              ))}
+              <NavLink to="/salon-etiquette" onClick={() => setMenuOpen(false)}>
+                <span>Salon Etiquette</span><ArrowUpRight aria-hidden="true" />
+              </NavLink>
+            </nav>
 
-        <div className="mobile-menu__links">
-          {navItems.map((item) => (
-            <NavLink key={item.to} to={item.to} end={item.to === '/'} onClick={() => setMenuOpen(false)}>
-              {item.label}
-            </NavLink>
-          ))}
-          <NavLink to="/salon-etiquette" onClick={() => setMenuOpen(false)}>Salon Etiquette</NavLink>
+            <div className="mobile-menu__contact">
+              <a href={site.phoneHref}>{site.phoneDisplay}</a>
+              <a href={`mailto:${site.email}`}>{site.email}</a>
+              <p>{site.addressLine1}<br />{site.addressLine2}</p>
+            </div>
+          </div>
         </div>
-
-        <a className="button button--gold" href={site.phoneHref}><Phone aria-hidden="true" /> Call {site.phoneDisplay}</a>
-      </div>
+      ) : null}
     </>
   )
 }

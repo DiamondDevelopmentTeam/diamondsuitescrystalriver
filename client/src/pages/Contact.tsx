@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { ContactForm } from '../components/ContactForm'
 import { PageHero } from '../components/PageHero'
 import { site } from '../data/site'
@@ -42,8 +43,15 @@ export function Contact() {
           <p className="eyebrow centered">Our Florida Locations</p>
           <h2 className="script-heading centered">Three destinations, one Diamond standard</h2>
           <div className="location-grid">
-            {locations.map((location) => (
-              <a key={location.name} href={location.href} target={location.href === '/' ? undefined : '_blank'} rel={location.href === '/' ? undefined : 'noopener noreferrer'}>
+            {locations.map((location) => location.href === '/' ? (
+              <Link key={location.name} to="/">
+                <MapPin />
+                <h3>{location.name}</h3>
+                <p>{location.address}</p>
+                <strong>{location.phone}</strong>
+              </Link>
+            ) : (
+              <a key={location.name} href={location.href} target="_blank" rel="noopener noreferrer">
                 <MapPin />
                 <h3>{location.name}</h3>
                 <p>{location.address}</p>

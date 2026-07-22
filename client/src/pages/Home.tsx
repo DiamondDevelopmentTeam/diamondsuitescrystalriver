@@ -1,235 +1,157 @@
-import { ChevronLeft, ChevronRight, MapPin, Sparkles, Users, WandSparkles } from 'lucide-react'
-import { useEffect, useRef, useState } from 'react'
-import type { PointerEvent } from 'react'
+import { ArrowRight, ArrowUpRight, Check, Mail, MapPin, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { professionals, site } from '../data/site'
 import { assetUrl } from '../utils/assetUrl'
 
-const lobbySlides = [
-  'images/lobby-portrait.jpg',
-  'images/lobby-window.jpg',
-  'images/lobby-wide.jpg',
+const serviceMoments = [
+  { title: 'Skincare', image: 'images/service-esthetician.jpeg', position: 'center 48%' },
+  { title: 'Hair', image: 'images/service-hair.jpg', position: 'center 44%' },
+  { title: 'Lashes & brows', image: 'images/service-lashes.jpg', position: 'center 42%' },
+  { title: 'Nails', image: 'images/service-nails.jpg', position: 'center 60%' },
 ]
 
-const services = [
-  { title: 'Esthetician', image: 'images/service-esthetician.jpeg' },
-  { title: 'Nail Technician', image: 'images/service-nails.jpg' },
-  { title: 'Eye Lashes', image: 'images/service-lashes.jpg' },
-  { title: 'Hair Stylist', image: 'images/service-hair.jpg' },
+const suiteFeatures = [
+  'Modern finishes and elegant décor',
+  'Independent climate control',
+  'High-quality lighting and spacious layouts',
+  'Sophisticated shared common areas',
 ]
 
-const benefits = [
-  { icon: Sparkles, title: 'Beautifully Designed Suites', text: 'Modern finishes, elegant décor, and exceptional lighting create a polished setting for work and relaxation.' },
-  { icon: Users, title: 'Professional Yet Personal', text: 'A boutique environment that feels refined, comfortable, and more personal than a traditional salon complex.' },
-  { icon: WandSparkles, title: 'Independent Professionals', text: 'Each specialist operates an independent business while sharing a commitment to excellent client care.' },
-  { icon: MapPin, title: 'Convenient Location', text: 'Easy access, complimentary parking, and a serene Crystal River setting away from the bustle.' },
-]
-
-function usePrefersReducedMotion() {
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const updatePreference = () => setPrefersReducedMotion(mediaQuery.matches)
-
-    updatePreference()
-    mediaQuery.addEventListener('change', updatePreference)
-
-    return () => mediaQuery.removeEventListener('change', updatePreference)
-  }, [])
-
-  return prefersReducedMotion
-}
+const featuredProfessionals = professionals.slice(0, 3)
 
 export function Home() {
-  const [slide, setSlide] = useState(0)
-  const [isCarouselPaused, setCarouselPaused] = useState(false)
-  const [isTabHidden, setTabHidden] = useState(false)
-  const prefersReducedMotion = usePrefersReducedMotion()
-  const touchStartX = useRef<number | null>(null)
-  const lastSlideChange = useRef(0)
-
-  useEffect(() => {
-    const handleVisibilityChange = () => setTabHidden(document.hidden)
-
-    handleVisibilityChange()
-    document.addEventListener('visibilitychange', handleVisibilityChange)
-
-    return () => document.removeEventListener('visibilitychange', handleVisibilityChange)
-  }, [])
-
-  useEffect(() => {
-    if (isCarouselPaused || isTabHidden || prefersReducedMotion) {
-      return
-    }
-
-    const timer = window.setInterval(() => setSlide((current) => (current + 1) % lobbySlides.length), 5600)
-    return () => window.clearInterval(timer)
-  }, [isCarouselPaused, isTabHidden, prefersReducedMotion])
-
-  const changeSlide = (nextSlide: number) => {
-    const now = window.performance.now()
-
-    if (now - lastSlideChange.current < 420) {
-      return
-    }
-
-    lastSlideChange.current = now
-    setSlide((nextSlide + lobbySlides.length) % lobbySlides.length)
-  }
-
-  const handleSwipeStart = (event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === 'mouse') {
-      return
-    }
-
-    touchStartX.current = event.clientX
-    setCarouselPaused(true)
-  }
-
-  const handleSwipeEnd = (event: PointerEvent<HTMLDivElement>) => {
-    if (touchStartX.current === null) {
-      return
-    }
-
-    const distance = event.clientX - touchStartX.current
-    touchStartX.current = null
-    setCarouselPaused(false)
-
-    if (Math.abs(distance) < 42) {
-      return
-    }
-
-    changeSlide(slide + (distance < 0 ? 1 : -1))
-  }
-
   return (
     <>
       <section className="home-hero">
-        <img src={assetUrl('images/hero-lobby.webp')} alt="Diamond Suites Crystal River lobby" />
-        <div className="home-hero__panel reveal-up">
-          <p>Welcome to</p>
-          <h1>Diamond Crystal River</h1>
-          <span>Your destination for beauty, wellness, and relaxation</span>
+        <div className="home-hero__copy">
+          <div className="home-hero__copy-inner" data-reveal>
+            <p className="eyebrow eyebrow--light">Crystal River, Florida</p>
+            <h1><span>Room to create.</span><span>A place to belong.</span></h1>
+            <p className="home-hero__lead">Private salon suites and a calm, polished setting for independent beauty and wellness professionals—and the clients who choose them.</p>
+            <div className="hero-actions">
+              <Link className="button button--light" to="/contact">Inquire about a suite <ArrowRight aria-hidden="true" /></Link>
+              <Link className="text-link text-link--light" to="/directory">Find a professional <ArrowUpRight aria-hidden="true" /></Link>
+            </div>
+          </div>
+        </div>
+        <div className="home-hero__image">
+          <img src={assetUrl('images/hero-lobby.webp')} alt="Bright reception lounge inside Diamond Suites Crystal River" width="1442" height="719" />
+          <span className="image-caption">A quiet welcome on N Citrus Avenue</span>
         </div>
       </section>
 
-      <section className="intro-section marble-surface section-space">
-        <div className="container split-layout">
-          <div
-            className="image-stack image-carousel"
-            role="region"
-            aria-roledescription="carousel"
-            aria-label="Diamond Suites Crystal River interior photos"
-            onPointerDown={handleSwipeStart}
-            onPointerUp={handleSwipeEnd}
-            onPointerCancel={() => {
-              touchStartX.current = null
-              setCarouselPaused(false)
-            }}
-            onMouseEnter={() => setCarouselPaused(true)}
-            onMouseLeave={() => setCarouselPaused(false)}
-            onFocus={() => setCarouselPaused(true)}
-            onBlur={() => setCarouselPaused(false)}
-          >
-            <div className="image-stack__frame" />
-            <div className="image-stack__slides" aria-live="polite">
-              {lobbySlides.map((image, index) => (
-                <img
-                  key={image}
-                  loading="lazy"
-                  src={assetUrl(image)}
-                  alt={`Interior of Diamond Suites Crystal River ${index + 1}`}
-                  className={index === slide ? 'is-active' : ''}
-                  aria-hidden={index !== slide}
-                />
-              ))}
-            </div>
-            <button className="slider-arrow slider-arrow--left" type="button" onClick={() => changeSlide(slide - 1)} aria-label="Previous interior photo"><ChevronLeft aria-hidden="true" /></button>
-            <button className="slider-arrow slider-arrow--right" type="button" onClick={() => changeSlide(slide + 1)} aria-label="Next interior photo"><ChevronRight aria-hidden="true" /></button>
-            <div className="slider-dots" aria-label="Interior photo selector">
-              {lobbySlides.map((item, index) => (
-                <button
-                  key={item}
-                  type="button"
-                  className={index === slide ? 'active' : ''}
-                  onClick={() => changeSlide(index)}
-                  aria-label={`View interior photo ${index + 1}`}
-                  aria-current={index === slide ? 'true' : undefined}
-                />
-              ))}
-            </div>
-          </div>
+      <section className="home-marker" aria-label="Diamond Suites Crystal River highlights">
+        <div className="container home-marker__inner">
+          <p><strong>Seven</strong><span>private suites</span></p>
+          <p><strong>Beauty + wellness</strong><span>independent professionals</span></p>
+          <p><strong>Crystal River</strong><span>825 N Citrus Avenue</span></p>
+        </div>
+      </section>
 
-          <div className="section-copy reveal-up">
-            <p className="eyebrow">Luxury Salon Suites</p>
-            <h2 className="script-heading">Diamond Suites<br />Crystal River</h2>
-            <div className="heading-rule" />
-            <p>Your destination for beauty, wellness, and relaxation. Located in the heart of Crystal River, this newest Diamond Suites location brings the same level of excellence and comfort that has made our Ocala and Downtown facilities so well-loved.</p>
-            <p>Beauty professionals and wellness experts come together in a refined environment designed to elevate every visit. Each suite blends privacy, style, and luxury, offering clients a place where quality care meets a calming atmosphere.</p>
-            <p>Whether you are visiting for hair, lashes, nails, or skincare, you will find everything you need to look and feel your best.</p>
-            <strong>Your journey to beauty and wellness begins here.</strong>
-            <Link className="text-link" to="/about">Discover our story →</Link>
+      <section className="editorial-intro section-space">
+        <div className="container editorial-intro__grid">
+          <figure className="editorial-intro__image" data-reveal>
+            <img loading="lazy" src={assetUrl('images/lobby-wide.jpg')} alt="Natural-light lounge at Diamond Suites Crystal River" width="1536" height="2048" />
+          </figure>
+          <div className="editorial-intro__copy" data-reveal>
+            <p className="eyebrow">The Crystal River experience</p>
+            <h2>A refined setting with a relaxed point of view.</h2>
+            <p className="lead-copy">Diamond Suites brings together private professional spaces and an inviting shared environment designed around comfort, focus, and thoughtful care.</p>
+            <p>Each independently operated suite gives professionals a place to welcome clients in privacy, while the light-filled common areas make every arrival feel considered.</p>
+            <Link className="text-link" to="/about">Step inside Crystal River <ArrowRight aria-hidden="true" /></Link>
           </div>
         </div>
       </section>
 
-      <section className="services-strip section-space--small">
-        <div className="services-track container">
-          {services.map((service) => (
-            <Link to="/directory" className="service-card" key={service.title}>
-              <img loading="lazy" src={assetUrl(service.image)} alt={service.title} />
-              <h3>{service.title}</h3>
+      <section className="services-editorial section-space--small">
+        <div className="container section-heading section-heading--split" data-reveal>
+          <div>
+            <p className="eyebrow">For every visit</p>
+            <h2>Care, offered independently.</h2>
+          </div>
+          <p>Discover the beauty and wellness specialties represented by professionals at the Crystal River location. Appointments are made directly with each provider.</p>
+        </div>
+        <div className="service-ribbon" data-reveal>
+          {serviceMoments.map((service) => (
+            <Link to="/directory" className="service-moment" key={service.title}>
+              <img loading="lazy" src={assetUrl(service.image)} alt="" width="1800" height="1200" style={{ objectPosition: service.position }} />
+              <span>{service.title}<ArrowUpRight aria-hidden="true" /></span>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="excellence-section">
-        <div className="excellence-image">
-          <img loading="lazy" src={assetUrl('images/lobby-portrait.jpg')} alt="Elegant seating area at Diamond Suites Crystal River" />
+      <section className="suite-opportunity section-space">
+        <div className="container suite-opportunity__grid">
+          <div className="suite-opportunity__copy" data-reveal>
+            <p className="eyebrow eyebrow--light">For independent professionals</p>
+            <h2>Make the space<br />your own.</h2>
+            <p>Build your client experience inside a private suite with polished finishes, practical details, and the independence to run your business your way.</p>
+            <ul className="check-list">
+              {suiteFeatures.map((feature) => <li key={feature}><Check aria-hidden="true" />{feature}</li>)}
+            </ul>
+            <Link className="button button--brass" to="/contact">Ask about availability <ArrowRight aria-hidden="true" /></Link>
+          </div>
+          <div className="suite-opportunity__visual" data-reveal>
+            <img loading="lazy" src={assetUrl('images/hallway.webp')} alt="Hallway leading to private salon suites" width="473" height="630" />
+            <p><span>01—07</span>Private rooms for independent work</p>
+          </div>
         </div>
-        <div className="excellence-copy section-space reveal-up">
-          <h2 className="script-heading">Where Beauty Meets Excellence</h2>
-          <p>Every detail matters, from the way a client is greeted to the atmosphere surrounding them.</p>
-          <p>Our location was built with one goal: to provide a private, luxurious space where beauty and wellness professionals can flourish and clients can relax.</p>
-          <strong>Why professionals and clients choose Diamond Suites:</strong>
-          <div className="benefits-list">
-            {benefits.map(({ icon: Icon, title, text }) => (
-              <article key={title}>
-                <span><Icon /></span>
-                <div><h3>{title}</h3><p>{text}</p></div>
+      </section>
+
+      <section className="professional-preview section-space">
+        <div className="container">
+          <div className="section-heading section-heading--split" data-reveal>
+            <div>
+              <p className="eyebrow">Inside the suites</p>
+              <h2>Meet a few of our professionals.</h2>
+            </div>
+            <Link className="text-link" to="/directory">View the full directory <ArrowRight aria-hidden="true" /></Link>
+          </div>
+          <div className="professional-preview__list">
+            {featuredProfessionals.map((professional) => (
+              <article key={professional.suite} data-reveal>
+                <img loading="lazy" src={assetUrl(professional.image)} alt={professional.name} width="480" height="600" />
+                <div>
+                  <span>Suite {String(professional.suite).padStart(2, '0')}</span>
+                  <p>{professional.title}</p>
+                  <h3>{professional.name}</h3>
+                  {professional.businessName ? <small>{professional.businessName}</small> : null}
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="story-collage marble-surface section-space">
-        <div className="container story-collage__grid">
-          <div className="story-collage__copy reveal-up">
-            <h2 className="script-heading">Diamond Suites<br />Crystal River</h2>
-            <div className="heading-rule" />
-            <p>Nestled in the heart of Crystal River, our newest location reflects everything the Diamond Suites brand stands for: beauty, professionalism, and comfort.</p>
-            <p>As the third addition to the Diamond Suites family, this location continues our mission to provide high-quality spaces for independent beauty and wellness professionals to thrive.</p>
-            <p>From lash and brow artistry to hair, nails, and skincare, a variety of experts are ready to help you look and feel your best.</p>
-          </div>
-          <div className="collage-grid">
-            <img loading="lazy" src={assetUrl('images/coffee-station.jpg')} alt="Coffee station" />
-            <img loading="lazy" src={assetUrl('images/service-hair.jpg')} alt="Hair styling" />
-            <img loading="lazy" src={assetUrl('images/service-nails.jpg')} alt="Nail service" />
-            <img loading="lazy" src={assetUrl('images/hero-lobby.webp')} alt="Salon lobby" />
-          </div>
+      <section className="visual-tour section-space">
+        <div className="container visual-tour__heading" data-reveal>
+          <p className="eyebrow">A closer look</p>
+          <h2>Light, calm, and carefully finished.</h2>
+          <Link className="text-link" to="/about">Explore the gallery <ArrowRight aria-hidden="true" /></Link>
+        </div>
+        <div className="container visual-tour__grid" data-reveal>
+          <img loading="lazy" src={assetUrl('images/lobby-window.jpg')} alt="Window-side seating in the Crystal River lounge" width="1536" height="2048" />
+          <img loading="lazy" src={assetUrl('images/vanity.jpg')} alt="Private suite vanity and mirror" width="1536" height="2048" />
+          <img loading="lazy" src={assetUrl('images/about-banner.webp')} alt="Reception details inside Diamond Suites Crystal River" width="1442" height="719" />
         </div>
       </section>
 
-      <section className="final-cta">
-        <img loading="lazy" src={assetUrl('images/building.webp')} alt="Diamond Suites Crystal River exterior" />
-        <div>
-          <h2 className="script-heading">The Next Chapter in Beauty and Wellness Excellence</h2>
-          <Link className="button button--gold" to="/contact">Contact Us Today</Link>
+      <section className="location-feature">
+        <div className="location-feature__image">
+          <img loading="lazy" src={assetUrl('images/building.webp')} alt="Diamond Suites Crystal River exterior at 825 N Citrus Avenue" width="925" height="548" />
+        </div>
+        <div className="location-feature__copy" data-reveal>
+          <p className="eyebrow eyebrow--light">Find us in Crystal River</p>
+          <h2>Your next visit starts here.</h2>
+          <address>{site.addressLine1}<br />{site.addressLine2}</address>
+          <div className="location-feature__links">
+            <a href={site.phoneHref}><Phone aria-hidden="true" />{site.phoneDisplay}</a>
+            <a href={`mailto:${site.email}`}><Mail aria-hidden="true" />{site.email}</a>
+            <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer"><MapPin aria-hidden="true" />Get directions <ArrowUpRight aria-hidden="true" /></a>
+          </div>
         </div>
       </section>
-      <p className="final-tagline script-heading">Your Destination for Beauty, Wellness, and Relaxation</p>
     </>
   )
 }

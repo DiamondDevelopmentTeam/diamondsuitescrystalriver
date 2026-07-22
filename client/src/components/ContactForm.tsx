@@ -1,4 +1,5 @@
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
+import type { FormEvent } from 'react'
 
 type FormState = {
   name: string
@@ -50,23 +51,23 @@ export function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form className="contact-form" onSubmit={handleSubmit} aria-busy={status === 'sending'}>
       <div className="form-grid">
         <label>
-          Name
-          <input required minLength={2} maxLength={80} value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} />
+          <span>Name <span className="required-mark" aria-hidden="true">*</span></span>
+          <input name="name" autoComplete="name" required minLength={2} maxLength={80} value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} />
         </label>
         <label>
-          Email
-          <input required type="email" maxLength={160} value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} />
+          <span>Email <span className="required-mark" aria-hidden="true">*</span></span>
+          <input name="email" autoComplete="email" required type="email" maxLength={160} value={form.email} onChange={(event) => setForm({ ...form, email: event.target.value })} />
         </label>
         <label>
-          Phone
-          <input type="tel" maxLength={30} value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} />
+          <span>Phone <span className="optional-mark">(optional)</span></span>
+          <input name="phone" autoComplete="tel" type="tel" maxLength={30} value={form.phone} onChange={(event) => setForm({ ...form, phone: event.target.value })} />
         </label>
         <label>
           I am interested in
-          <select value={form.interest} onChange={(event) => setForm({ ...form, interest: event.target.value })}>
+          <select name="interest" value={form.interest} onChange={(event) => setForm({ ...form, interest: event.target.value })}>
             <option>General inquiry</option>
             <option>Booking a service</option>
             <option>Suite availability</option>
@@ -75,8 +76,8 @@ export function ContactForm() {
         </label>
       </div>
       <label>
-        Message
-        <textarea required minLength={10} maxLength={3000} rows={7} value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} />
+        <span>Message <span className="required-mark" aria-hidden="true">*</span></span>
+        <textarea name="message" required minLength={10} maxLength={3000} rows={7} value={form.message} onChange={(event) => setForm({ ...form, message: event.target.value })} />
       </label>
       <label className="honeypot" aria-hidden="true">
         Website
@@ -85,7 +86,7 @@ export function ContactForm() {
       <button className="button button--gold" type="submit" disabled={status === 'sending'}>
         {status === 'sending' ? 'Sending…' : 'Send Message'}
       </button>
-      {feedback ? <p className={`form-feedback form-feedback--${status}`} role="status">{feedback}</p> : null}
+      {feedback ? <p className={`form-feedback form-feedback--${status}`} role={status === 'error' ? 'alert' : 'status'} aria-live="polite">{feedback}</p> : null}
     </form>
   )
 }

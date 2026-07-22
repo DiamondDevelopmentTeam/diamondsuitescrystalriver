@@ -18,18 +18,9 @@ export function PageHero({
   return (
     <section
       className="page-hero"
-      style={{
-        backgroundImage: `
-          linear-gradient(
-            90deg,
-            rgba(0, 0, 0, 0.72),
-            rgba(0, 0, 0, 0.2)
-          ),
-          url("${backgroundImage}")
-        `,
-      }}
+      style={{ backgroundImage: `url("${backgroundImage}")` }}
     >
-      <div className="page-hero__content container reveal-up">
+      <div className="page-hero__content container" data-reveal>
         {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
 
         <h1>{title}</h1>

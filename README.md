@@ -2,17 +2,16 @@
 
 A full React + TypeScript client and Express + TypeScript server for `diamondsuitescrystalriver.com`.
 
-The rebuild includes:
+The site includes:
 
-- Responsive pages for Home, About, Suites, FAQ's, Directory, Contact, Salon Etiquette, Privacy Policy, and 404
-- Compact sticky header that becomes smaller while scrolling
-- Mobile navigation
-- Current Crystal River content and professional directory
+- An original editorial design for Crystal River using the approved Diamond identity and location photography
+- Responsive pages for Home, About, Suites, FAQs, Directory, Contact, Salon Etiquette, Privacy Policy, and 404
+- Compact sticky navigation with an accessible mobile menu
+- The verified Crystal River professional directory, contact details, and location information
 - Contact form API with validation, rate limiting, spam honeypot, and optional SMTP delivery
-- Local images downloaded from the existing website instead of hotlinking
+- Local approved images instead of hotlinks
 - GitHub Pages client deployment workflow
 - Docker and Render full-stack deployment files
-- Previous vendor attribution removed from the website footer
 
 ## Folder structure
 
@@ -27,18 +26,17 @@ diamondsuitescrystalriver/
 └─ render.yaml             Render Blueprint
 ```
 
-## Logo and marble files
+## Brand assets
 
-Place or replace these files inside `client/public/images`:
+The approved Crystal River logo and light marble texture are stored in `client/public/images`:
 
 ```text
 DiamondSuitesCrystalRiverLogo.gif
-DiamondSuitesDownTownOcalaLogo.gif
-DiamondSuitesOcalaLogo.gif
+DiamondSuitesCrystalRiverLogo.webp
 marblebackground.jpg
 ```
 
-The supplied package already includes the Crystal River logo and a lightweight fallback marble texture. Replace them with your exact originals when ready. The other two logos have styled fallbacks, so the app will still run before you add the GIF files.
+The optimized WebP logo is preferred, with the GIF retained as a fallback. Preserve the original aspect ratio when replacing either asset.
 
 ## Local setup
 

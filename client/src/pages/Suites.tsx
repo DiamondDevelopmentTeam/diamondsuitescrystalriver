@@ -26,7 +26,7 @@ export function Suites() {
           <img className="feature-image feature-image--portrait" loading="lazy" src={assetUrl('images/hallway.webp')} alt="Hallway leading to private suites" />
           <div className="section-copy reveal-up">
             <p className="eyebrow">Suites at Crystal River</p>
-            <h2 className="script-heading">A refined space for your business to grow</h2>
+            <h2 className="script-heading">A refined space to welcome your clients</h2>
             <div className="heading-rule" />
             <p>Diamond Suites Crystal River features seven beautifully designed private suites, each crafted to enhance client comfort and professional function.</p>
             <p>The building is serene, clean, and meticulously maintained, reflecting the Diamond Suites standard of excellence.</p>

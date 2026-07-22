@@ -1,68 +1,26 @@
-import type { CSSProperties } from 'react'
-import { Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react'
+import { ArrowUpRight, Facebook, Instagram, Mail, MapPin, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { navItems, site } from '../data/site'
-import { assetUrl } from '../utils/assetUrl'
-import { BrandAsset } from './BrandAsset'
 import { LogoImage } from './LogoImage'
-import './HeaderFooter.css'
 
 export function Footer() {
-  const marbleStyle = {
-    '--crystal-marble-background': `url("${assetUrl('images/blackMarble.jpg')}")`,
-  } as CSSProperties
-
   return (
-    <footer className="site-footer crystal-footer" style={marbleStyle}>
-      <div className="footer-inner container">
-        <div className="footer-brands" aria-label="Diamond Suites locations">
-          <Link className="footer-logo-card footer-logo-card--primary" to="/" aria-label="Diamond Suites Crystal River home">
-            <LogoImage className="footer-primary-logo" />
-          </Link>
-
-          <a
-            className="footer-logo-card"
-            href="https://diamondsuitesdowntownocala.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit Diamond Suites Downtown Ocala"
-          >
-            <BrandAsset
-              src="images/DiamondSuitesDownTownOcalaLogo.gif"
-              alt="Diamond Suites Downtown Ocala"
-              className="partner-logo-image"
-              fallbackClassName="partner-logo--pink"
-              fallbackTitle="DIAMOND SUITES"
-              fallbackSubtitle="DOWNTOWN OCALA"
-            />
-          </a>
-
-          <a
-            className="footer-logo-card"
-            href="https://diamondsuitesocala.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit Diamond Suites Ocala"
-          >
-            <BrandAsset
-              src="images/DiamondSuitesOcalaLogo.gif"
-              alt="Diamond Suites Ocala"
-              className="partner-logo-image"
-              fallbackClassName="partner-logo--blue"
-              fallbackTitle="DIAMOND"
-              fallbackSubtitle="SUITES OCALA"
-            />
-          </a>
+    <footer className="site-footer">
+      <div className="footer-main container">
+        <div className="footer-intro">
+          <Link to="/" aria-label="Diamond Suites Crystal River home"><LogoImage className="footer-logo" /></Link>
+          <p>Private salon suites and independent beauty and wellness professionals in Crystal River, Florida.</p>
+          <Link className="footer-inquiry" to="/contact">Ask about a suite <ArrowUpRight aria-hidden="true" /></Link>
         </div>
 
         <nav className="footer-nav" aria-label="Footer navigation">
-          <h2>Explore</h2>
+          <h2>Visit</h2>
           {navItems.map((item) => <Link key={item.to} to={item.to}>{item.label}</Link>)}
           <Link to="/salon-etiquette">Salon Etiquette</Link>
         </nav>
 
         <div className="footer-contact">
-          <h2>Contact</h2>
+          <h2>Crystal River</h2>
           <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer">
             <MapPin aria-hidden="true" />
             <span>{site.addressLine1}<br />{site.addressLine2}</span>
@@ -75,11 +33,17 @@ export function Footer() {
             <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Visit Instagram"><Instagram /></a>
           </div>
         </div>
+
+        <div className="footer-related">
+          <h2>Diamond family</h2>
+          <a href="https://diamondsuitesdowntownocala.com/" target="_blank" rel="noopener noreferrer">Downtown Ocala <ArrowUpRight aria-hidden="true" /></a>
+          <a href="https://diamondsuitesocala.com/" target="_blank" rel="noopener noreferrer">Ocala <ArrowUpRight aria-hidden="true" /></a>
+        </div>
       </div>
 
-      <div className="crystal-footer__bottom-shell">
-        <div className="footer-bottom container">
-          <span>Copyright © {new Date().getFullYear()} Diamond Suites Crystal River. All Rights Reserved.</span>
+      <div className="footer-bottom">
+        <div className="container">
+          <span>© {new Date().getFullYear()} Diamond Suites Crystal River</span>
           <Link to="/privacy-policy">Privacy Policy</Link>
         </div>
       </div>

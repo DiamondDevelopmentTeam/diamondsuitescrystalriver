@@ -23,7 +23,7 @@ export function About() {
             <p className="eyebrow">A Vision of Beauty and Excellence</p>
             <h2 className="script-heading">Designed for professionals.<br />Created for confidence.</h2>
             <div className="heading-rule" />
-            <p>Diamond Suites was founded by Veronica Lake, whose passion for beauty and wellness inspired her to create elegant, professional spaces where clients and providers can thrive.</p>
+            <p>Diamond Suites was founded by Veronica Lake, whose passion for beauty and wellness inspired her to create elegant, professional spaces for clients and independent providers.</p>
             <p>From Ocala to Downtown and now Crystal River, each Diamond Suites location reflects a commitment to thoughtful design, comfort, and quality. Every detail, from the lighting to the layout, is chosen to create an inviting environment where professionals can offer exceptional care.</p>
           </div>
           <img className="feature-image" loading="lazy" src={assetUrl('images/lobby-wide.jpg')} alt="Diamond Suites reception and waiting area" />

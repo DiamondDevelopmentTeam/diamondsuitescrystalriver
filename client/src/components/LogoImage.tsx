@@ -7,8 +7,8 @@ type LogoImageProps = {
 }
 
 const logoSources = [
-  'images/DiamondSuitesCrystalRiverLogo.gif',
   'images/DiamondSuitesCrystalRiverLogo.webp',
+  'images/DiamondSuitesCrystalRiverLogo.gif',
 ]
 
 export function LogoImage({
