@@ -13,7 +13,7 @@ const locations = [
 export function Contact() {
   return (
     <>
-      <PageHero eyebrow="Start a Conversation" title="Contact Diamond Suites" image="images/about-banner.webp" description="Questions about a service, a professional, or suite availability? Reach out to our team." />
+      <PageHero eyebrow="Start a Conversation" title="Contact Diamond Suites" image="about-banner" description="Questions about a service, a professional, or suite availability? Reach out to our team." />
       <section className="marble-surface section-space">
         <div className="container contact-layout">
           <aside className="contact-details">

@@ -1,8 +1,9 @@
 import { ArrowRight, ArrowUpRight, ExternalLink, Mail, Phone, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { PageHero } from '../components/PageHero'
+import { ResponsiveImage } from '../components/ResponsiveImage'
+import type { ImageKey } from '../data/images'
 import { professionals, unlistedSuites, type Professional, type UnlistedSuite } from '../data/site'
-import { assetUrl } from '../utils/assetUrl'
 
 type DirectoryEntry = Professional | UnlistedSuite
 
@@ -12,14 +13,14 @@ function isProfessional(entry: DirectoryEntry): entry is Professional {
   return 'name' in entry
 }
 
-function ProfessionalPortrait({ src, name, position }: { src: string; name: string; position?: string }) {
+function ProfessionalPortrait({ src, name, position }: { src: ImageKey; name: string; position?: string }) {
   const [failed, setFailed] = useState(false)
 
   if (failed) {
     return <div className="professional-card__fallback"><strong>{name}</strong></div>
   }
 
-  return <img loading="lazy" src={assetUrl(src)} alt={name} style={{ objectPosition: position }} onError={() => setFailed(true)} />
+  return <ResponsiveImage image={src} alt={name} sizes="(max-width: 640px) 100vw, (max-width: 900px) 42vw, 22vw" objectFit="cover" objectPosition={position ?? 'center top'} onError={() => setFailed(true)} />
 }
 
 export function Directory() {
@@ -67,7 +68,7 @@ export function Directory() {
 
   return (
     <>
-      <PageHero eyebrow="Seven Private Suites" title="Meet Our Professionals" image="images/directory-banner.webp" description="Discover the independent beauty and wellness specialists who make Diamond Suites Crystal River shine." />
+      <PageHero eyebrow="Seven Private Suites" title="Meet Our Professionals" image="directory-banner" description="Discover the independent beauty and wellness specialists who make Diamond Suites Crystal River shine." />
       <section className="marble-surface section-space">
         <div className="container directory-intro centered">
           <p className="eyebrow">The Crystal River Directory</p>
@@ -80,7 +81,7 @@ export function Directory() {
               return (
                 <article className="professional-card professional-card--unlisted" key={entry.suite}>
                   <div className="professional-card__image">
-                    <img loading="lazy" src={assetUrl(entry.image)} alt="Hallway outside the private suites" style={{ objectPosition: entry.imagePosition }} />
+                    <ResponsiveImage image={entry.image} alt="Hallway outside the private suites" sizes="(max-width: 640px) 100vw, (max-width: 900px) 42vw, 22vw" objectFit="cover" objectPosition={entry.imagePosition ?? 'center'} />
                     <span>Suite {entry.suite}</span>
                   </div>
                   <div className="professional-card__body">

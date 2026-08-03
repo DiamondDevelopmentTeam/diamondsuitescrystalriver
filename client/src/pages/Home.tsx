@@ -1,13 +1,32 @@
 import { ArrowRight, ArrowUpRight, Check, Mail, MapPin, Phone } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { ResponsiveImage } from '../components/ResponsiveImage'
 import { professionals, site } from '../data/site'
-import { assetUrl } from '../utils/assetUrl'
+import type { ImageKey } from '../data/images'
 
-const serviceMoments = [
-  { title: 'Skincare', image: 'images/service-esthetician.jpeg', position: 'center 48%' },
-  { title: 'Hair', image: 'images/service-hair.jpg', position: 'center 44%' },
-  { title: 'Lashes & brows', image: 'images/service-lashes.jpg', position: 'center 42%' },
-  { title: 'Nails', image: 'images/service-nails.jpg', position: 'center 60%' },
+const serviceMoments: { title: string; image: ImageKey; position: string }[] = [
+  { title: 'Skincare', image: 'service-esthetician', position: 'center 48%' },
+  { title: 'Hair', image: 'service-hair', position: 'center 44%' },
+  { title: 'Lashes & brows', image: 'service-lashes', position: 'center 42%' },
+  { title: 'Nails', image: 'service-nails', position: 'center 60%' },
+]
+
+const galleryImages: { image: ImageKey; alt: string; position: string }[] = [
+  {
+    image: 'lobby-window',
+    alt: 'Window-side seating in the Crystal River lounge',
+    position: 'center 45%',
+  },
+  {
+    image: 'lobby-portrait',
+    alt: 'Seating and polished details in the Crystal River lounge',
+    position: 'center 46%',
+  },
+  {
+    image: 'vanity',
+    alt: 'Private suite vanity and mirror',
+    position: 'center 42%',
+  },
 ]
 
 const suiteFeatures = [
@@ -35,7 +54,7 @@ export function Home() {
           </div>
         </div>
         <div className="home-hero__image">
-          <img src={assetUrl('images/hero-lobby.webp')} alt="Bright reception lounge inside Diamond Suites Crystal River" width="1442" height="719" />
+          <ResponsiveImage image="hero-lobby" alt="Bright reception lounge inside Diamond Suites Crystal River" sizes="(max-width: 900px) 100vw, 54vw" priority objectFit="cover" />
           <span className="image-caption">A quiet welcome on N Citrus Avenue</span>
         </div>
       </section>
@@ -51,7 +70,7 @@ export function Home() {
       <section className="editorial-intro section-space">
         <div className="container editorial-intro__grid">
           <figure className="editorial-intro__image" data-reveal>
-            <img loading="lazy" src={assetUrl('images/lobby-wide.jpg')} alt="Natural-light lounge at Diamond Suites Crystal River" width="1536" height="2048" />
+            <ResponsiveImage image="lobby-wide" alt="Natural-light lounge at Diamond Suites Crystal River" sizes="(max-width: 900px) min(100vw - 40px, 620px), 590px" objectFit="cover" objectPosition="50% 44%" />
           </figure>
           <div className="editorial-intro__copy" data-reveal>
             <p className="eyebrow">The Crystal River experience</p>
@@ -74,7 +93,7 @@ export function Home() {
         <div className="service-ribbon" data-reveal>
           {serviceMoments.map((service) => (
             <Link to="/directory" className="service-moment" key={service.title}>
-              <img loading="lazy" src={assetUrl(service.image)} alt="" width="1800" height="1200" style={{ objectPosition: service.position }} />
+              <ResponsiveImage image={service.image} alt="" sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 25vw" objectFit="cover" objectPosition={service.position} />
               <span>{service.title}<ArrowUpRight aria-hidden="true" /></span>
             </Link>
           ))}
@@ -93,7 +112,7 @@ export function Home() {
             <Link className="button button--brass" to="/contact">Ask about availability <ArrowRight aria-hidden="true" /></Link>
           </div>
           <div className="suite-opportunity__visual" data-reveal>
-            <img loading="lazy" src={assetUrl('images/hallway.webp')} alt="Hallway leading to private salon suites" width="473" height="630" />
+            <ResponsiveImage image="hallway" alt="Hallway leading to private salon suites" sizes="(max-width: 900px) min(90vw, 650px), 42vw" objectFit="cover" objectPosition="center" />
             <p><span>01—07</span>Private rooms for independent work</p>
           </div>
         </div>
@@ -111,7 +130,7 @@ export function Home() {
           <div className="professional-preview__list">
             {featuredProfessionals.map((professional) => (
               <article key={professional.suite} data-reveal>
-                <img loading="lazy" src={assetUrl(professional.image)} alt={professional.name} width="480" height="600" />
+                <ResponsiveImage image={professional.image} alt={professional.name} sizes="(max-width: 640px) 42vw, (max-width: 1100px) 180px, 14vw" objectFit="cover" objectPosition={professional.imagePosition ?? 'center top'} />
                 <div>
                   <span>Suite {String(professional.suite).padStart(2, '0')}</span>
                   <p>{professional.title}</p>
@@ -126,20 +145,30 @@ export function Home() {
 
       <section className="visual-tour section-space">
         <div className="container visual-tour__heading" data-reveal>
-          <p className="eyebrow">A closer look</p>
-          <h2>Light, calm, and carefully finished.</h2>
+          <div>
+            <p className="eyebrow">A closer look</p>
+            <h2>Light, calm, and carefully finished.</h2>
+          </div>
           <Link className="text-link" to="/about">Explore the gallery <ArrowRight aria-hidden="true" /></Link>
         </div>
         <div className="container visual-tour__grid" data-reveal>
-          <img loading="lazy" src={assetUrl('images/lobby-window.jpg')} alt="Window-side seating in the Crystal River lounge" width="1536" height="2048" />
-          <img loading="lazy" src={assetUrl('images/vanity.jpg')} alt="Private suite vanity and mirror" width="1536" height="2048" />
-          <img loading="lazy" src={assetUrl('images/about-banner.webp')} alt="Reception details inside Diamond Suites Crystal River" width="1442" height="719" />
+          {galleryImages.map((galleryImage) => (
+            <ResponsiveImage
+              key={galleryImage.image}
+              image={galleryImage.image}
+              alt={galleryImage.alt}
+              sizes="(max-width: 640px) calc(100vw - 32px), (max-width: 900px) calc((100vw - 52px) / 2), (max-width: 1296px) calc((100vw - 96px) / 3), 400px"
+              pictureClassName="visual-tour__item"
+              objectFit="cover"
+              objectPosition={galleryImage.position}
+            />
+          ))}
         </div>
       </section>
 
       <section className="location-feature">
         <div className="location-feature__image">
-          <img loading="lazy" src={assetUrl('images/building.webp')} alt="Diamond Suites Crystal River exterior at 825 N Citrus Avenue" width="925" height="548" />
+          <ResponsiveImage image="building" alt="Diamond Suites Crystal River exterior at 825 N Citrus Avenue" sizes="(max-width: 900px) 100vw, 62vw" objectFit="cover" objectPosition="center" />
         </div>
         <div className="location-feature__copy" data-reveal>
           <p className="eyebrow eyebrow--light">Find us in Crystal River</p>

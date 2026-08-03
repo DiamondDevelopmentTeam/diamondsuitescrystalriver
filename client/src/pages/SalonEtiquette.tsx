@@ -13,7 +13,7 @@ const policies = [
 export function SalonEtiquette() {
   return (
     <>
-      <PageHero eyebrow="Guest Guidelines" title="Salon Etiquette" image="images/lobby-window.jpg" description="A calm, professional environment depends on consideration from everyone who enters." />
+      <PageHero eyebrow="Guest Guidelines" title="Salon Etiquette" image="lobby-window" description="A calm, professional environment depends on consideration from everyone who enters." />
       <section className="marble-surface section-space legal-page">
         <div className="container legal-container">
           <p>Diamond Suites Crystal River strives to provide a relaxing, professional, and comfortable experience for every guest. Because the professionals within our suites operate independent businesses, booking and service policies may vary. Please review both these shared-building guidelines and the policies of your individual provider.</p>

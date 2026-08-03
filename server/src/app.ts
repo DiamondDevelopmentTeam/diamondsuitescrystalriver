@@ -54,6 +54,11 @@ export function createApp() {
 
   app.use(express.json({ limit: '32kb' }))
 
+  app.use('/api', (_request, response, next) => {
+    response.setHeader('Cache-Control', 'no-store')
+    next()
+  })
+
   app.get('/health', (_request, response) => {
     response.json({ status: 'ok', service: 'diamondsuitescrystalriver-server' })
   })

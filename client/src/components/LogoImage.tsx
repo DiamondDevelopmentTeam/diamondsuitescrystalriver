@@ -1,21 +1,15 @@
 import { useState } from 'react'
-import { assetUrl } from '../utils/assetUrl'
+import { ResponsiveImage } from './ResponsiveImage'
 
 type LogoImageProps = {
   className?: string
   alt?: string
 }
 
-const logoSources = [
-  'images/DiamondSuitesCrystalRiverLogo.webp',
-  'images/DiamondSuitesCrystalRiverLogo.gif',
-]
-
 export function LogoImage({
   className,
   alt = 'Diamond Suites Crystal River',
 }: LogoImageProps) {
-  const [sourceIndex, setSourceIndex] = useState(0)
   const [failed, setFailed] = useState(false)
 
   if (failed) {
@@ -32,17 +26,16 @@ export function LogoImage({
   }
 
   return (
-    <img
+    <ResponsiveImage
+      image="logo"
       className={className}
-      src={assetUrl(logoSources[sourceIndex])}
       alt={alt}
-      onError={() => {
-        if (sourceIndex < logoSources.length - 1) {
-          setSourceIndex((current) => current + 1)
-        } else {
-          setFailed(true)
-        }
-      }}
+      sizes="(max-width: 640px) 245px, 330px"
+      loading="eager"
+      objectFit="contain"
+      objectPosition="left center"
+      preserveAspectRatio
+      onError={() => setFailed(true)}
     />
   )
 }

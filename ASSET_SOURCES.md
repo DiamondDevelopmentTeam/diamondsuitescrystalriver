@@ -1,6 +1,6 @@
 # Image asset sources
 
-The included location and service images were downloaded from the existing Diamond Suites Crystal River website and renamed for clearer development use.
+The included location and service images were downloaded from the existing Diamond Suites Crystal River website and renamed for clearer development use. Archival originals are kept in `client/image-sources`; versioned AVIF/WebP delivery variants live in `client/public/images/optimized/v1`.
 
 - `hero-lobby.webp`: `https://diamondsuitescrystalriver.com/wp-content/uploads/2025/10/img_12.webp`
 - `lobby-portrait.jpg`: `https://diamondsuitescrystalriver.com/wp-content/uploads/2025/10/img2.jpg`
@@ -18,3 +18,5 @@ The included location and service images were downloaded from the existing Diamo
 - `suites-banner.webp`: `https://diamondsuitescrystalriver.com/wp-content/uploads/2025/10/img_11112.webp`
 - `directory-banner.webp`: `https://diamondsuitescrystalriver.com/wp-content/uploads/2025/10/img_232.webp`
 - Professional portraits: existing `suite_01.webp`, `suite_3.webp`, `suite_4.webp`, `suite_5.webp`, `suite_6.webp`, and `AubreyGlow2025-2-scaled.jpeg` uploads on the same website.
+
+`coffee-station.jpg` and the legacy GIF logo are preserved in the archival source folder but are not copied into production because the application no longer references them. The WebP logo is retained as the smaller, transparency-preserving production source.

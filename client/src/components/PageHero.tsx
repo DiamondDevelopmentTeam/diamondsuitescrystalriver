@@ -1,9 +1,10 @@
-import { assetUrl } from '../utils/assetUrl'
+import type { ImageKey } from '../data/images'
+import { ResponsiveImage } from './ResponsiveImage'
 
 type PageHeroProps = {
   eyebrow?: string
   title: string
-  image: string
+  image: ImageKey
   description?: string
 }
 
@@ -13,13 +14,16 @@ export function PageHero({
   image,
   description,
 }: PageHeroProps) {
-  const backgroundImage = assetUrl(image)
-
   return (
-    <section
-      className="page-hero"
-      style={{ backgroundImage: `url("${backgroundImage}")` }}
-    >
+    <section className="page-hero">
+      <ResponsiveImage
+        image={image}
+        alt=""
+        sizes="100vw"
+        priority
+        pictureClassName="page-hero__media"
+        objectFit="cover"
+      />
       <div className="page-hero__content container" data-reveal>
         {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
 

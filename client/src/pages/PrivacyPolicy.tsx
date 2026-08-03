@@ -3,7 +3,7 @@ import { PageHero } from '../components/PageHero'
 export function PrivacyPolicy() {
   return (
     <>
-      <PageHero eyebrow="Your Information" title="Privacy Policy" image="images/hero-lobby.webp" description="How Diamond Suites Crystal River handles information submitted through this website." />
+      <PageHero eyebrow="Your Information" title="Privacy Policy" image="hero-lobby" description="How Diamond Suites Crystal River handles information submitted through this website." />
       <section className="marble-surface section-space legal-page">
         <div className="container legal-container">
           <p><strong>Effective date: 2026</strong></p>

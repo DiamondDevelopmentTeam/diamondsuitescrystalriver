@@ -5,7 +5,7 @@ Audit completed July 22, 2026.
 ## Sources checked
 
 - Legacy Crystal River directory: https://diamondsuitescrystalriver.com/directory/
-- Existing approved portraits in `client/public/images/`, previously sourced from the legacy WordPress uploads
+- Existing approved portraits in `client/image-sources/`, with responsive delivery variants in `client/public/images/optimized/v1/`
 - Glow and Grace Crystal River website: https://www.glowandgraceaesthetics.com/crystal-river/home
 - Glow and Grace Crystal River booking page: https://www.vagaro.com/glowandgraceaesthetics2
 

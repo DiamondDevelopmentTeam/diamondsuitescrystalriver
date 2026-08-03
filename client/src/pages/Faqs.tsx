@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { PageHero } from '../components/PageHero'
@@ -13,11 +13,12 @@ const faqs = [
 ]
 
 export function Faqs() {
-  const [openIndex, setOpenIndex] = useState(0)
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const accordionId = useId()
 
   return (
     <>
-      <PageHero eyebrow="Helpful Information" title="Frequently Asked Questions" image="images/directory-banner.webp" description="A few quick answers before your visit or leasing inquiry." />
+      <PageHero eyebrow="Helpful Information" title="Frequently Asked Questions" image="directory-banner" description="A few quick answers before your visit or leasing inquiry." />
       <section className="marble-surface section-space">
         <div className="container faq-layout">
           <div className="faq-intro">
@@ -29,12 +30,28 @@ export function Faqs() {
           <div className="accordion">
             {faqs.map((faq, index) => {
               const open = index === openIndex
+              const questionId = `${accordionId}-question-${index}`
+              const answerId = `${accordionId}-answer-${index}`
               return (
                 <article className={open ? 'accordion-item accordion-item--open' : 'accordion-item'} key={faq.question}>
-                  <button type="button" onClick={() => setOpenIndex(open ? -1 : index)} aria-expanded={open}>
-                    <span>{faq.question}</span><ChevronDown />
+                  <button
+                    type="button"
+                    id={questionId}
+                    onClick={() => setOpenIndex(open ? null : index)}
+                    aria-expanded={open}
+                    aria-controls={answerId}
+                  >
+                    <span>{faq.question}</span><ChevronDown aria-hidden="true" />
                   </button>
-                  <div className="accordion-answer"><p>{faq.answer}</p></div>
+                  <div
+                    className="accordion-answer"
+                    id={answerId}
+                    role="region"
+                    aria-labelledby={questionId}
+                    aria-hidden={!open}
+                  >
+                    <div><p>{faq.answer}</p></div>
+                  </div>
                 </article>
               )
             })}

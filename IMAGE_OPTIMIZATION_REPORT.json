@@ -1,0 +1,877 @@
+{
+  "about-banner.webp": {
+    "originalBytes": 83562,
+    "sourceWidth": 1442,
+    "sourceHeight": 719,
+    "variants": [
+      {
+        "width": 640,
+        "height": 319,
+        "format": "avif",
+        "bytes": 12610,
+        "file": "about-banner-640.avif"
+      },
+      {
+        "width": 640,
+        "height": 319,
+        "format": "webp",
+        "bytes": 17720,
+        "file": "about-banner-640.webp"
+      },
+      {
+        "width": 1024,
+        "height": 511,
+        "format": "avif",
+        "bytes": 26957,
+        "file": "about-banner-1024.avif"
+      },
+      {
+        "width": 1024,
+        "height": 511,
+        "format": "webp",
+        "bytes": 37020,
+        "file": "about-banner-1024.webp"
+      },
+      {
+        "width": 1440,
+        "height": 718,
+        "format": "avif",
+        "bytes": 45009,
+        "file": "about-banner-1440.avif"
+      },
+      {
+        "width": 1440,
+        "height": 718,
+        "format": "webp",
+        "bytes": 61402,
+        "file": "about-banner-1440.webp"
+      }
+    ]
+  },
+  "aubrey-novy.jpeg": {
+    "originalBytes": 364937,
+    "sourceWidth": 1707,
+    "sourceHeight": 2560,
+    "variants": [
+      {
+        "width": 360,
+        "height": 540,
+        "format": "avif",
+        "bytes": 10592,
+        "file": "aubrey-novy-360.avif"
+      },
+      {
+        "width": 360,
+        "height": 540,
+        "format": "webp",
+        "bytes": 13398,
+        "file": "aubrey-novy-360.webp"
+      },
+      {
+        "width": 720,
+        "height": 1080,
+        "format": "avif",
+        "bytes": 31395,
+        "file": "aubrey-novy-720.avif"
+      },
+      {
+        "width": 720,
+        "height": 1080,
+        "format": "webp",
+        "bytes": 39046,
+        "file": "aubrey-novy-720.webp"
+      },
+      {
+        "width": 1200,
+        "height": 1800,
+        "format": "avif",
+        "bytes": 67773,
+        "file": "aubrey-novy-1200.avif"
+      },
+      {
+        "width": 1200,
+        "height": 1800,
+        "format": "webp",
+        "bytes": 82960,
+        "file": "aubrey-novy-1200.webp"
+      }
+    ]
+  },
+  "building.webp": {
+    "originalBytes": 73078,
+    "sourceWidth": 925,
+    "sourceHeight": 548,
+    "variants": [
+      {
+        "width": 480,
+        "height": 284,
+        "format": "avif",
+        "bytes": 11668,
+        "file": "building-480.avif"
+      },
+      {
+        "width": 480,
+        "height": 284,
+        "format": "webp",
+        "bytes": 17706,
+        "file": "building-480.webp"
+      },
+      {
+        "width": 800,
+        "height": 474,
+        "format": "avif",
+        "bytes": 28265,
+        "file": "building-800.avif"
+      },
+      {
+        "width": 800,
+        "height": 474,
+        "format": "webp",
+        "bytes": 41608,
+        "file": "building-800.webp"
+      },
+      {
+        "width": 925,
+        "height": 548,
+        "format": "avif",
+        "bytes": 36400,
+        "file": "building-925.avif"
+      },
+      {
+        "width": 925,
+        "height": 548,
+        "format": "webp",
+        "bytes": 55876,
+        "file": "building-925.webp"
+      }
+    ]
+  },
+  "cindy-vanlue.webp": {
+    "originalBytes": 33234,
+    "sourceWidth": 362,
+    "sourceHeight": 483,
+    "variants": [
+      {
+        "width": 362,
+        "height": 483,
+        "format": "avif",
+        "bytes": 20015,
+        "file": "cindy-vanlue-362.avif"
+      },
+      {
+        "width": 362,
+        "height": 483,
+        "format": "webp",
+        "bytes": 29120,
+        "file": "cindy-vanlue-362.webp"
+      }
+    ]
+  },
+  "daniela-riley.webp": {
+    "originalBytes": 23216,
+    "sourceWidth": 362,
+    "sourceHeight": 544,
+    "variants": [
+      {
+        "width": 362,
+        "height": 544,
+        "format": "avif",
+        "bytes": 15244,
+        "file": "daniela-riley-362.avif"
+      },
+      {
+        "width": 362,
+        "height": 544,
+        "format": "webp",
+        "bytes": 20060,
+        "file": "daniela-riley-362.webp"
+      }
+    ]
+  },
+  "directory-banner.webp": {
+    "originalBytes": 123086,
+    "sourceWidth": 1442,
+    "sourceHeight": 719,
+    "variants": [
+      {
+        "width": 640,
+        "height": 319,
+        "format": "avif",
+        "bytes": 18831,
+        "file": "directory-banner-640.avif"
+      },
+      {
+        "width": 640,
+        "height": 319,
+        "format": "webp",
+        "bytes": 29638,
+        "file": "directory-banner-640.webp"
+      },
+      {
+        "width": 1024,
+        "height": 511,
+        "format": "avif",
+        "bytes": 38794,
+        "file": "directory-banner-1024.avif"
+      },
+      {
+        "width": 1024,
+        "height": 511,
+        "format": "webp",
+        "bytes": 58996,
+        "file": "directory-banner-1024.webp"
+      },
+      {
+        "width": 1440,
+        "height": 718,
+        "format": "avif",
+        "bytes": 60161,
+        "file": "directory-banner-1440.avif"
+      },
+      {
+        "width": 1440,
+        "height": 718,
+        "format": "webp",
+        "bytes": 87112,
+        "file": "directory-banner-1440.webp"
+      }
+    ]
+  },
+  "hallway.webp": {
+    "originalBytes": 30922,
+    "sourceWidth": 473,
+    "sourceHeight": 630,
+    "variants": [
+      {
+        "width": 320,
+        "height": 426,
+        "format": "avif",
+        "bytes": 11552,
+        "file": "hallway-320.avif"
+      },
+      {
+        "width": 320,
+        "height": 426,
+        "format": "webp",
+        "bytes": 14136,
+        "file": "hallway-320.webp"
+      },
+      {
+        "width": 473,
+        "height": 630,
+        "format": "avif",
+        "bytes": 21724,
+        "file": "hallway-473.avif"
+      },
+      {
+        "width": 473,
+        "height": 630,
+        "format": "webp",
+        "bytes": 26734,
+        "file": "hallway-473.webp"
+      }
+    ]
+  },
+  "hero-lobby.webp": {
+    "originalBytes": 110084,
+    "sourceWidth": 1442,
+    "sourceHeight": 719,
+    "variants": [
+      {
+        "width": 640,
+        "height": 319,
+        "format": "avif",
+        "bytes": 15034,
+        "file": "hero-lobby-640.avif"
+      },
+      {
+        "width": 640,
+        "height": 319,
+        "format": "webp",
+        "bytes": 22086,
+        "file": "hero-lobby-640.webp"
+      },
+      {
+        "width": 1024,
+        "height": 511,
+        "format": "avif",
+        "bytes": 32587,
+        "file": "hero-lobby-1024.avif"
+      },
+      {
+        "width": 1024,
+        "height": 511,
+        "format": "webp",
+        "bytes": 47058,
+        "file": "hero-lobby-1024.webp"
+      },
+      {
+        "width": 1440,
+        "height": 718,
+        "format": "avif",
+        "bytes": 55922,
+        "file": "hero-lobby-1440.avif"
+      },
+      {
+        "width": 1440,
+        "height": 718,
+        "format": "webp",
+        "bytes": 78228,
+        "file": "hero-lobby-1440.webp"
+      }
+    ]
+  },
+  "jenelle-suleyman.webp": {
+    "originalBytes": 11138,
+    "sourceWidth": 365,
+    "sourceHeight": 401,
+    "variants": [
+      {
+        "width": 365,
+        "height": 401,
+        "format": "avif",
+        "bytes": 8799,
+        "file": "jenelle-suleyman-365.avif"
+      },
+      {
+        "width": 365,
+        "height": 401,
+        "format": "webp",
+        "bytes": 9844,
+        "file": "jenelle-suleyman-365.webp"
+      }
+    ]
+  },
+  "lobby-portrait.jpg": {
+    "originalBytes": 344422,
+    "sourceWidth": 1536,
+    "sourceHeight": 2048,
+    "variants": [
+      {
+        "width": 480,
+        "height": 640,
+        "format": "avif",
+        "bytes": 18329,
+        "file": "lobby-portrait-480.avif"
+      },
+      {
+        "width": 480,
+        "height": 640,
+        "format": "webp",
+        "bytes": 24648,
+        "file": "lobby-portrait-480.webp"
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "format": "avif",
+        "bytes": 38751,
+        "file": "lobby-portrait-768.avif"
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "format": "webp",
+        "bytes": 50676,
+        "file": "lobby-portrait-768.webp"
+      },
+      {
+        "width": 1200,
+        "height": 1600,
+        "format": "avif",
+        "bytes": 82089,
+        "file": "lobby-portrait-1200.avif"
+      },
+      {
+        "width": 1200,
+        "height": 1600,
+        "format": "webp",
+        "bytes": 101622,
+        "file": "lobby-portrait-1200.webp"
+      }
+    ]
+  },
+  "lobby-wide.jpg": {
+    "originalBytes": 405124,
+    "sourceWidth": 1536,
+    "sourceHeight": 2048,
+    "variants": [
+      {
+        "width": 480,
+        "height": 640,
+        "format": "avif",
+        "bytes": 19178,
+        "file": "lobby-wide-480.avif"
+      },
+      {
+        "width": 480,
+        "height": 640,
+        "format": "webp",
+        "bytes": 25422,
+        "file": "lobby-wide-480.webp"
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "format": "avif",
+        "bytes": 42562,
+        "file": "lobby-wide-768.avif"
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "format": "webp",
+        "bytes": 57102,
+        "file": "lobby-wide-768.webp"
+      },
+      {
+        "width": 1200,
+        "height": 1600,
+        "format": "avif",
+        "bytes": 97672,
+        "file": "lobby-wide-1200.avif"
+      },
+      {
+        "width": 1200,
+        "height": 1600,
+        "format": "webp",
+        "bytes": 122456,
+        "file": "lobby-wide-1200.webp"
+      }
+    ]
+  },
+  "lobby-window.jpg": {
+    "originalBytes": 340734,
+    "sourceWidth": 1536,
+    "sourceHeight": 2048,
+    "variants": [
+      {
+        "width": 480,
+        "height": 640,
+        "format": "avif",
+        "bytes": 17811,
+        "file": "lobby-window-480.avif"
+      },
+      {
+        "width": 480,
+        "height": 640,
+        "format": "webp",
+        "bytes": 23470,
+        "file": "lobby-window-480.webp"
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "format": "avif",
+        "bytes": 36874,
+        "file": "lobby-window-768.avif"
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "format": "webp",
+        "bytes": 49326,
+        "file": "lobby-window-768.webp"
+      },
+      {
+        "width": 1200,
+        "height": 1600,
+        "format": "avif",
+        "bytes": 80194,
+        "file": "lobby-window-1200.avif"
+      },
+      {
+        "width": 1200,
+        "height": 1600,
+        "format": "webp",
+        "bytes": 101750,
+        "file": "lobby-window-1200.webp"
+      }
+    ]
+  },
+  "malina-glaum.webp": {
+    "originalBytes": 14248,
+    "sourceWidth": 360,
+    "sourceHeight": 540,
+    "variants": [
+      {
+        "width": 360,
+        "height": 540,
+        "format": "avif",
+        "bytes": 9925,
+        "file": "malina-glaum-360.avif"
+      },
+      {
+        "width": 360,
+        "height": 540,
+        "format": "webp",
+        "bytes": 12716,
+        "file": "malina-glaum-360.webp"
+      }
+    ]
+  },
+  "marblebackground.jpg": {
+    "originalBytes": 742558,
+    "sourceWidth": 3456,
+    "sourceHeight": 5184,
+    "variants": [
+      {
+        "width": 768,
+        "height": 1152,
+        "format": "avif",
+        "bytes": 11945,
+        "file": "marblebackground-768.avif"
+      },
+      {
+        "width": 768,
+        "height": 1152,
+        "format": "webp",
+        "bytes": 8820,
+        "file": "marblebackground-768.webp"
+      },
+      {
+        "width": 1600,
+        "height": 2400,
+        "format": "avif",
+        "bytes": 26337,
+        "file": "marblebackground-1600.avif"
+      },
+      {
+        "width": 1600,
+        "height": 2400,
+        "format": "webp",
+        "bytes": 26310,
+        "file": "marblebackground-1600.webp"
+      }
+    ]
+  },
+  "samantha-jacks.webp": {
+    "originalBytes": 32216,
+    "sourceWidth": 360,
+    "sourceHeight": 476,
+    "variants": [
+      {
+        "width": 360,
+        "height": 476,
+        "format": "avif",
+        "bytes": 20031,
+        "file": "samantha-jacks-360.avif"
+      },
+      {
+        "width": 360,
+        "height": 476,
+        "format": "webp",
+        "bytes": 28574,
+        "file": "samantha-jacks-360.webp"
+      }
+    ]
+  },
+  "service-esthetician.jpeg": {
+    "originalBytes": 225463,
+    "sourceWidth": 1800,
+    "sourceHeight": 1200,
+    "variants": [
+      {
+        "width": 480,
+        "height": 320,
+        "format": "avif",
+        "bytes": 9060,
+        "file": "service-esthetician-480.avif"
+      },
+      {
+        "width": 480,
+        "height": 320,
+        "format": "webp",
+        "bytes": 12366,
+        "file": "service-esthetician-480.webp"
+      },
+      {
+        "width": 800,
+        "height": 533,
+        "format": "avif",
+        "bytes": 17948,
+        "file": "service-esthetician-800.avif"
+      },
+      {
+        "width": 800,
+        "height": 533,
+        "format": "webp",
+        "bytes": 22946,
+        "file": "service-esthetician-800.webp"
+      },
+      {
+        "width": 1200,
+        "height": 800,
+        "format": "avif",
+        "bytes": 31828,
+        "file": "service-esthetician-1200.avif"
+      },
+      {
+        "width": 1200,
+        "height": 800,
+        "format": "webp",
+        "bytes": 39252,
+        "file": "service-esthetician-1200.webp"
+      }
+    ]
+  },
+  "service-hair.jpg": {
+    "originalBytes": 180451,
+    "sourceWidth": 1800,
+    "sourceHeight": 1197,
+    "variants": [
+      {
+        "width": 480,
+        "height": 319,
+        "format": "avif",
+        "bytes": 8402,
+        "file": "service-hair-480.avif"
+      },
+      {
+        "width": 480,
+        "height": 319,
+        "format": "webp",
+        "bytes": 11216,
+        "file": "service-hair-480.webp"
+      },
+      {
+        "width": 800,
+        "height": 532,
+        "format": "avif",
+        "bytes": 17233,
+        "file": "service-hair-800.avif"
+      },
+      {
+        "width": 800,
+        "height": 532,
+        "format": "webp",
+        "bytes": 22204,
+        "file": "service-hair-800.webp"
+      },
+      {
+        "width": 1200,
+        "height": 798,
+        "format": "avif",
+        "bytes": 29549,
+        "file": "service-hair-1200.avif"
+      },
+      {
+        "width": 1200,
+        "height": 798,
+        "format": "webp",
+        "bytes": 37436,
+        "file": "service-hair-1200.webp"
+      }
+    ]
+  },
+  "service-lashes.jpg": {
+    "originalBytes": 215103,
+    "sourceWidth": 1800,
+    "sourceHeight": 1200,
+    "variants": [
+      {
+        "width": 480,
+        "height": 320,
+        "format": "avif",
+        "bytes": 8516,
+        "file": "service-lashes-480.avif"
+      },
+      {
+        "width": 480,
+        "height": 320,
+        "format": "webp",
+        "bytes": 10174,
+        "file": "service-lashes-480.webp"
+      },
+      {
+        "width": 800,
+        "height": 533,
+        "format": "avif",
+        "bytes": 18284,
+        "file": "service-lashes-800.avif"
+      },
+      {
+        "width": 800,
+        "height": 533,
+        "format": "webp",
+        "bytes": 21124,
+        "file": "service-lashes-800.webp"
+      },
+      {
+        "width": 1200,
+        "height": 800,
+        "format": "avif",
+        "bytes": 34864,
+        "file": "service-lashes-1200.avif"
+      },
+      {
+        "width": 1200,
+        "height": 800,
+        "format": "webp",
+        "bytes": 38354,
+        "file": "service-lashes-1200.webp"
+      }
+    ]
+  },
+  "service-nails.jpg": {
+    "originalBytes": 230343,
+    "sourceWidth": 1800,
+    "sourceHeight": 1202,
+    "variants": [
+      {
+        "width": 480,
+        "height": 321,
+        "format": "avif",
+        "bytes": 10744,
+        "file": "service-nails-480.avif"
+      },
+      {
+        "width": 480,
+        "height": 321,
+        "format": "webp",
+        "bytes": 14450,
+        "file": "service-nails-480.webp"
+      },
+      {
+        "width": 800,
+        "height": 534,
+        "format": "avif",
+        "bytes": 23668,
+        "file": "service-nails-800.avif"
+      },
+      {
+        "width": 800,
+        "height": 534,
+        "format": "webp",
+        "bytes": 33064,
+        "file": "service-nails-800.webp"
+      },
+      {
+        "width": 1200,
+        "height": 801,
+        "format": "avif",
+        "bytes": 43480,
+        "file": "service-nails-1200.avif"
+      },
+      {
+        "width": 1200,
+        "height": 801,
+        "format": "webp",
+        "bytes": 60192,
+        "file": "service-nails-1200.webp"
+      }
+    ]
+  },
+  "suites-banner.webp": {
+    "originalBytes": 94582,
+    "sourceWidth": 1442,
+    "sourceHeight": 719,
+    "variants": [
+      {
+        "width": 640,
+        "height": 319,
+        "format": "avif",
+        "bytes": 12930,
+        "file": "suites-banner-640.avif"
+      },
+      {
+        "width": 640,
+        "height": 319,
+        "format": "webp",
+        "bytes": 18156,
+        "file": "suites-banner-640.webp"
+      },
+      {
+        "width": 1024,
+        "height": 511,
+        "format": "avif",
+        "bytes": 28596,
+        "file": "suites-banner-1024.avif"
+      },
+      {
+        "width": 1024,
+        "height": 511,
+        "format": "webp",
+        "bytes": 38450,
+        "file": "suites-banner-1024.webp"
+      },
+      {
+        "width": 1440,
+        "height": 718,
+        "format": "avif",
+        "bytes": 47829,
+        "file": "suites-banner-1440.avif"
+      },
+      {
+        "width": 1440,
+        "height": 718,
+        "format": "webp",
+        "bytes": 63802,
+        "file": "suites-banner-1440.webp"
+      }
+    ]
+  },
+  "vanity.jpg": {
+    "originalBytes": 177376,
+    "sourceWidth": 1536,
+    "sourceHeight": 2048,
+    "variants": [
+      {
+        "width": 480,
+        "height": 640,
+        "format": "avif",
+        "bytes": 9213,
+        "file": "vanity-480.avif"
+      },
+      {
+        "width": 480,
+        "height": 640,
+        "format": "webp",
+        "bytes": 10864,
+        "file": "vanity-480.webp"
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "format": "avif",
+        "bytes": 17276,
+        "file": "vanity-768.avif"
+      },
+      {
+        "width": 768,
+        "height": 1024,
+        "format": "webp",
+        "bytes": 20630,
+        "file": "vanity-768.webp"
+      },
+      {
+        "width": 1200,
+        "height": 1600,
+        "format": "avif",
+        "bytes": 32954,
+        "file": "vanity-1200.avif"
+      },
+      {
+        "width": 1200,
+        "height": 1600,
+        "format": "webp",
+        "bytes": 37262,
+        "file": "vanity-1200.webp"
+      }
+    ]
+  },
+  "DiamondSuitesCrystalRiverLogo.webp": {
+    "originalBytes": 5658,
+    "sourceWidth": 1020,
+    "sourceHeight": 200,
+    "variants": [
+      {
+        "width": 1020,
+        "height": 200,
+        "format": "webp",
+        "bytes": 5658,
+        "file": "diamondsuitescrystalriverlogo-1020.webp"
+      }
+    ]
+  }
+}

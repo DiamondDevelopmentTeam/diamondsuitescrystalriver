@@ -1,3 +1,5 @@
+import type { ImageKey } from './images'
+
 export const site = {
   name: 'Diamond Suites Crystal River',
   phoneDisplay: '352-244-8352',
@@ -25,7 +27,7 @@ export type Professional = {
   businessName?: string
   title: string
   bio: string[]
-  image: string
+  image: ImageKey
   imagePosition?: string
   services?: string[]
   phone?: string
@@ -42,7 +44,7 @@ export type UnlistedSuite = {
   suite: number
   heading: string
   note: string
-  image: string
+  image: ImageKey
   imagePosition?: string
 }
 
@@ -52,7 +54,7 @@ export const professionals: Professional[] = [
     name: 'Cindy Vanlue',
     businessName: 'Knots Kneaded Massage LLC',
     title: 'Massage Therapist',
-    image: 'images/cindy-vanlue.webp',
+    image: 'cindy-vanlue',
     imagePosition: '45% top',
     services: ['Relaxation', 'Stress relief', 'Muscle recovery'],
     bio: [
@@ -68,7 +70,7 @@ export const professionals: Professional[] = [
     name: 'Jenell Suleyman',
     businessName: 'Cornerstone Wellness Center, LLC',
     title: 'Board-Certified Nurse Practitioner',
-    image: 'images/jenelle-suleyman.webp',
+    image: 'jenelle-suleyman',
     imagePosition: '50% 28%',
     services: ['Obesity management', 'Hormone optimization', 'Personalized wellness care'],
     bio: [
@@ -86,7 +88,7 @@ export const professionals: Professional[] = [
     suite: 4,
     name: 'Malina Glaum',
     title: 'Lash and Brow Specialist',
-    image: 'images/malina-glaum.webp',
+    image: 'malina-glaum',
     imagePosition: 'center top',
     services: ['Lash extensions', 'Esthetics', 'Nail services'],
     bio: [
@@ -100,7 +102,7 @@ export const professionals: Professional[] = [
     suite: 5,
     name: 'Samantha Jacks',
     title: 'Hair Stylist',
-    image: 'images/samantha-jacks.webp',
+    image: 'samantha-jacks',
     imagePosition: '50% 18%',
     services: ['Blonding', 'Extensions', 'Color'],
     bio: [
@@ -111,7 +113,7 @@ export const professionals: Professional[] = [
     suite: 6,
     name: 'Daniela Riley',
     title: 'Nail Technician',
-    image: 'images/daniela-riley.webp',
+    image: 'daniela-riley',
     imagePosition: 'center top',
     services: ['Classic nail sets', 'Detailed nail art', 'Custom nail designs'],
     bio: [
@@ -123,7 +125,7 @@ export const professionals: Professional[] = [
     name: 'Aubrey Novy',
     businessName: 'Glow and Grace Aesthetic, LLC',
     title: 'Esthetician',
-    image: 'images/aubrey-novy.jpeg',
+    image: 'aubrey-novy',
     imagePosition: 'center top',
     phone: '352-220-2007',
     email: 'aubrey.glowandgraceaesthetics@gmail.com',
@@ -148,7 +150,7 @@ export const unlistedSuites: UnlistedSuite[] = [
     suite: 2,
     heading: 'Profile details coming soon',
     note: 'The legacy directory does not currently list a professional or profile information for this suite.',
-    image: 'images/hallway.webp',
+    image: 'hallway',
     imagePosition: 'center',
   },
 ]

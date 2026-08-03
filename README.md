@@ -18,7 +18,8 @@ The site includes:
 ```text
 diamondsuitescrystalriver/
 ├─ client/                 React + Vite + TypeScript
-│  ├─ public/images/       All website images and logos
+│  ├─ image-sources/       Archival originals, excluded from deployment
+│  ├─ public/images/       Versioned AVIF/WebP delivery assets
 │  └─ src/
 ├─ server/                 Express + TypeScript contact API
 ├─ .github/workflows/      Validation and GitHub Pages deployment
@@ -28,15 +29,15 @@ diamondsuitescrystalriver/
 
 ## Brand assets
 
-The approved Crystal River logo and light marble texture are stored in `client/public/images`:
+The approved originals are preserved in `client/image-sources`. Responsive, deployment-ready files are generated in `client/public/images/optimized/v1` and delivered through the shared `ResponsiveImage` component.
 
 ```text
-DiamondSuitesCrystalRiverLogo.gif
-DiamondSuitesCrystalRiverLogo.webp
-marblebackground.jpg
+client/image-sources/DiamondSuitesCrystalRiverLogo.webp
+client/image-sources/marblebackground.jpg
+client/public/images/optimized/v1/
 ```
 
-The optimized WebP logo is preferred, with the GIF retained as a fallback. Preserve the original aspect ratio when replacing either asset.
+Optimized filenames are versioned. Increment the image version when regenerating a changed source so GitHub Pages and browsers can cache old immutable files without keeping a stale replacement. Vite continues to content-hash JavaScript and CSS bundles. There is no service worker, so HTML and form/API requests are never intercepted by an application cache.
 
 ## Local setup
 
@@ -54,6 +55,17 @@ Open:
 - Server health: `http://localhost:4100/health`
 
 The Vite client proxies `/api` and `/health` to the server during local development.
+
+All browser form routes are centralized in `client/src/config/api.ts`. Configure the shared forms API without editing a form component:
+
+```env
+VITE_FORMS_API_BASE_URL=https://api.diamondsuitescrystalriver.com
+VITE_CONTACT_FORM_ENDPOINT=/api/contact
+VITE_INQUIRY_FORM_ENDPOINT=/api/inquiry
+VITE_TURNSTILE_SITE_KEY=
+```
+
+Only public browser configuration belongs in the client environment. Microsoft Graph authentication, email delivery, recipient routing, and Turnstile secret verification must remain in the API or Azure Function.
 
 ## Production build
 

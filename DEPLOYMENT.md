@@ -37,11 +37,15 @@ Before the workflow can deploy:
 2. Go to **Settings → Pages**.
 3. Under **Build and deployment**, set **Source** to **GitHub Actions**.
 4. In **Settings → Secrets and variables → Actions → Variables**, create:
-   - Name: `VITE_API_URL`
-   - Value: the separate API origin, such as `https://api.diamondsuitescrystalriver.com`
+   - `VITE_FORMS_API_BASE_URL`: the shared forms API origin, such as `https://api.diamondsuitescrystalriver.com`
+   - `VITE_CONTACT_FORM_ENDPOINT`: the contact route, such as `/api/contact`
+   - `VITE_INQUIRY_FORM_ENDPOINT`: the leasing-inquiry route (use `/api/contact` while the bundled Express server handles both)
+   - `VITE_TURNSTILE_SITE_KEY`: an optional public Turnstile site key
 5. Push to `main` or manually run **Deploy client to GitHub Pages**.
 
 The workflow creates a `404.html` SPA fallback and publishes `client/dist`. The `client/public/CNAME` file sets the custom domain.
+
+Vite emits content-hashed JavaScript and CSS. Photographs and logos use versioned paths under `images/optimized/v1`, so changed image content must be published under a new version directory. Stable `index.html` and `404.html` reference the current hashed/versioned assets and are not stored by a service worker, allowing each GitHub Pages deployment to replace the application shell without requiring a manual cache clear.
 
 ### GitHub Pages DNS
 
@@ -68,7 +72,7 @@ SERVE_CLIENT=false
 ALLOWED_ORIGINS=https://diamondsuitescrystalriver.com,https://www.diamondsuitescrystalriver.com
 ```
 
-Add `api.diamondsuitescrystalriver.com` as the server's custom domain, then set the GitHub repository variable `VITE_API_URL` to that HTTPS origin and redeploy Pages.
+Add `api.diamondsuitescrystalriver.com` as the server's custom domain, then set `VITE_FORMS_API_BASE_URL` to that HTTPS origin and redeploy Pages. Microsoft Graph tenant IDs, client secrets, access tokens, recipient routing, and Turnstile secret keys belong only in the API or Azure Function environment; they must never be added to the client variables above.
 
 ## Git commands
 

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
+import { getFormsApiUrl } from '../config/api'
 
 type FormState = {
   name: string
@@ -29,16 +30,18 @@ export function ContactForm() {
     setStatus('sending')
     setFeedback('')
 
-    const apiBase = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/$/, '') ?? ''
+    const endpoint = form.interest === 'Suite availability' || form.interest === 'Schedule a tour'
+      ? 'inquiry'
+      : 'contact'
 
     try {
-      const response = await fetch(`${apiBase}/api/contact`, {
+      const response = await fetch(getFormsApiUrl(endpoint), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, formType: endpoint }),
       })
 
-      const result = (await response.json()) as { message?: string }
+      const result = await response.json().catch(() => ({})) as { message?: string }
       if (!response.ok) throw new Error(result.message || 'Unable to send your message.')
 
       setStatus('success')
