@@ -14,10 +14,11 @@ export const site = {
 
 export const navItems = [
   { label: 'Home', to: '/' },
-  { label: 'About', to: '/about' },
   { label: 'Suites', to: '/suites' },
+  { label: 'Professionals', to: '/directory' },
+  { label: 'Gallery', to: '/gallery' },
+  { label: 'About', to: '/about' },
   { label: "FAQ's", to: '/faqs' },
-  { label: 'Directory', to: '/directory' },
   { label: 'Contact', to: '/contact' },
 ] as const
 

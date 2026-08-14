@@ -21,13 +21,13 @@ export function Faqs() {
       <PageHero eyebrow="Helpful Information" title="Frequently Asked Questions" image="directory-banner" description="A few quick answers before your visit or leasing inquiry." />
       <section className="marble-surface section-space">
         <div className="container faq-layout">
-          <div className="faq-intro">
+          <div className="faq-intro" data-reveal>
             <p className="eyebrow">Questions, Meet Answers</p>
             <h2 className="script-heading">Everything you need for a smooth visit</h2>
             <p>Services are provided by independent professionals inside Diamond Suites Crystal River. Booking details, pricing, and individual policies may vary by provider.</p>
             <Link className="button button--dark" to="/contact">Still Have a Question?</Link>
           </div>
-          <div className="accordion">
+          <div className="accordion" data-reveal>
             {faqs.map((faq, index) => {
               const open = index === openIndex
               const questionId = `${accordionId}-question-${index}`

@@ -11,7 +11,7 @@ This option serves the React website and contact API from the same domain. It av
 1. Push this project to the `diamondsuitescrystalriver` GitHub repository.
 2. In Render, create a new **Blueprint** and select the repository.
 3. Render reads `render.yaml` and builds the root `Dockerfile`.
-4. Enter the private SMTP values when Render asks for them.
+4. Enter the private Microsoft Graph and reCAPTCHA values when Render asks for them.
 5. Confirm `/health` returns a JSON response with `status: ok`.
 6. Add both custom domains in Render:
    - `diamondsuitescrystalriver.com`
@@ -40,7 +40,7 @@ Before the workflow can deploy:
    - `VITE_FORMS_API_BASE_URL`: the shared forms API origin, such as `https://api.diamondsuitescrystalriver.com`
    - `VITE_CONTACT_FORM_ENDPOINT`: the contact route, such as `/api/contact`
    - `VITE_INQUIRY_FORM_ENDPOINT`: the leasing-inquiry route (use `/api/contact` while the bundled Express server handles both)
-   - `VITE_TURNSTILE_SITE_KEY`: an optional public Turnstile site key
+   - `VITE_RECAPTCHA_SITE_KEY`: the public Google reCAPTCHA v2 checkbox site key
 5. Push to `main` or manually run **Deploy client to GitHub Pages**.
 
 The workflow creates a `404.html` SPA fallback and publishes `client/dist`. The `client/public/CNAME` file sets the custom domain.
@@ -72,7 +72,16 @@ SERVE_CLIENT=false
 ALLOWED_ORIGINS=https://diamondsuitescrystalriver.com,https://www.diamondsuitescrystalriver.com
 ```
 
-Add `api.diamondsuitescrystalriver.com` as the server's custom domain, then set `VITE_FORMS_API_BASE_URL` to that HTTPS origin and redeploy Pages. Microsoft Graph tenant IDs, client secrets, access tokens, recipient routing, and Turnstile secret keys belong only in the API or Azure Function environment; they must never be added to the client variables above.
+Add `api.diamondsuitescrystalriver.com` as the server's custom domain, then set `VITE_FORMS_API_BASE_URL` to that HTTPS origin and redeploy Pages. Microsoft Graph tenant IDs, client secrets, access tokens, recipient routing, and the reCAPTCHA secret key belong only in the API or Azure Function environment; they must never be added to the client variables above.
+
+### Microsoft Graph setup
+
+1. [Register an application in Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app).
+2. Add Microsoft Graph [`Mail.Send` as an **Application** permission](https://learn.microsoft.com/en-us/graph/permissions-reference#mail-send) and grant administrator consent.
+3. For least privilege, scope the application to the configured sender mailbox with Exchange Online application RBAC or an application access policy.
+4. Create the client secret and store it only on the API host.
+5. Configure `GRAPH_TENANT_ID`, `GRAPH_CLIENT_ID`, `GRAPH_CLIENT_SECRET`, `GRAPH_SENDER_EMAIL`, and `INQUIRY_RECIPIENT_EMAIL` from `server/.env.example`.
+6. Register a [Google reCAPTCHA v2 **“I'm not a robot” Checkbox**](https://developers.google.com/recaptcha/docs/display) for the production and staging domains. Put its public site key in the client build and its secret in `RECAPTCHA_SECRET_KEY` on the API host.
 
 ## Git commands
 
@@ -90,7 +99,7 @@ git push -u origin main
 - Replace the three logo GIF files and marble background with the final originals.
 - Confirm phone numbers and email addresses with the business owner.
 - Confirm each professional's booking phone or booking URL.
-- Configure SMTP and submit a real test lead.
+- Configure Microsoft Graph and reCAPTCHA, then submit a real test lead.
 - Test desktop, mobile, direct route refreshes, and the contact form.
 - Confirm Facebook and Instagram links.
 - Verify the privacy policy with the business before launch.

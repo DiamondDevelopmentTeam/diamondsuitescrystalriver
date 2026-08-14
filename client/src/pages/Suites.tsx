@@ -23,7 +23,7 @@ export function Suites() {
 
       <section className="marble-surface section-space">
         <div className="container split-layout">
-          <ResponsiveImage className="feature-image feature-image--portrait" image="hallway" alt="Hallway leading to private suites" sizes="(max-width: 900px) min(100vw - 40px, 560px), 42vw" objectFit="cover" objectPosition="center" />
+          <ResponsiveImage data-reveal className="feature-image feature-image--portrait" image="hallway" alt="Hallway leading to private suites" sizes="(max-width: 900px) min(100vw - 40px, 560px), 42vw" objectFit="cover" objectPosition="center" />
           <div className="section-copy reveal-up">
             <p className="eyebrow">Suites at Crystal River</p>
             <h2 className="script-heading">A refined space to welcome your clients</h2>
@@ -40,7 +40,7 @@ export function Suites() {
         <div className="container">
           <p className="eyebrow centered">Included in the Experience</p>
           <h2 className="script-heading centered">Details That Make the Difference</h2>
-          <div className="amenities-grid">
+          <div className="amenities-grid" data-reveal>
             {amenities.map(({ icon: Icon, text }) => (
               <article key={text}><span><Icon /></span><h3>{text}</h3></article>
             ))}
@@ -49,7 +49,7 @@ export function Suites() {
       </section>
 
       <section className="values-section section-space">
-        <div className="container values-grid">
+        <div className="container values-grid" data-reveal>
           {values.map(({ icon: Icon, title, text }) => (
             <article key={title}>
               <Icon />

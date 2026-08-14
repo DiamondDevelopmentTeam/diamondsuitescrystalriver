@@ -27,7 +27,7 @@ export function About() {
             <p>Diamond Suites was founded by Veronica Lake, whose passion for beauty and wellness inspired her to create elegant, professional spaces for clients and independent providers.</p>
             <p>From Ocala to Downtown and now Crystal River, each Diamond Suites location reflects a commitment to thoughtful design, comfort, and quality. Every detail, from the lighting to the layout, is chosen to create an inviting environment where professionals can offer exceptional care.</p>
           </div>
-          <ResponsiveImage className="feature-image" image="lobby-wide" alt="Diamond Suites reception and waiting area" sizes="(max-width: 900px) min(100vw - 40px, 560px), 560px" objectFit="cover" objectPosition="center 45%" />
+          <ResponsiveImage data-reveal className="feature-image" image="lobby-wide" alt="Diamond Suites reception and waiting area" sizes="(max-width: 900px) min(100vw - 40px, 560px), 560px" objectFit="cover" objectPosition="center 45%" />
         </div>
       </section>
 
@@ -37,7 +37,7 @@ export function About() {
           <h2 className="script-heading centered">Modern, Calm, and Carefully Finished</h2>
           <div className="about-gallery">
             {gallery.map((item, index) => (
-              <figure className={index < 4 ? 'about-gallery__portrait' : 'about-gallery__landscape'} key={item.image}>
+              <figure data-reveal className={index < 4 ? 'about-gallery__portrait' : 'about-gallery__landscape'} key={item.image}>
                 <ResponsiveImage
                   image={item.image}
                   alt={item.alt}
@@ -52,7 +52,7 @@ export function About() {
       </section>
 
       <section className="dark-cta section-space">
-        <div className="container dark-cta__inner">
+        <div className="container dark-cta__inner" data-reveal>
           <div>
             <p className="eyebrow">The New Crystal River Location</p>
             <h2 className="script-heading">Seven private suites. One elevated experience.</h2>

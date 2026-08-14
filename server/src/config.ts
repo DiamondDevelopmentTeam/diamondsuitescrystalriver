@@ -6,13 +6,12 @@ const envSchema = z.object({
   PORT: z.coerce.number().int().positive().default(4100),
   ALLOWED_ORIGINS: z.string().default('https://diamondsuitescrystalriver.com,https://www.diamondsuitescrystalriver.com'),
   SERVE_CLIENT: z.string().default('false').transform((value) => value === 'true'),
-  SMTP_HOST: z.string().optional(),
-  SMTP_PORT: z.coerce.number().int().positive().default(587),
-  SMTP_SECURE: z.string().default('false').transform((value) => value === 'true'),
-  SMTP_USER: z.string().optional(),
-  SMTP_PASS: z.string().optional(),
-  CONTACT_TO: z.email().default('ashley@diamondsuitesocala.com'),
-  CONTACT_FROM: z.email().default('website@diamondsuitescrystalriver.com'),
+  GRAPH_TENANT_ID: z.string().trim().optional(),
+  GRAPH_CLIENT_ID: z.string().trim().optional(),
+  GRAPH_CLIENT_SECRET: z.string().trim().optional(),
+  GRAPH_SENDER_EMAIL: z.email().optional(),
+  INQUIRY_RECIPIENT_EMAIL: z.email().default('ashley@diamondsuitesocala.com'),
+  RECAPTCHA_SECRET_KEY: z.string().trim().optional(),
 })
 
 const parsed = envSchema.safeParse(process.env)

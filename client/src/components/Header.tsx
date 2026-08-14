@@ -5,41 +5,9 @@ import { navItems, site } from '../data/site'
 import { LogoImage } from './LogoImage'
 
 export function Header() {
-  const [isCompact, setIsCompact] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
   const menuButtonRef = useRef<HTMLButtonElement>(null)
-
-  useEffect(() => {
-    let frame = 0
-
-    const updateHeaderState = () => {
-      setIsCompact((current) => {
-        if (!current && window.scrollY > 72) {
-          return true
-        }
-
-        if (current && window.scrollY < 28) {
-          return false
-        }
-
-        return current
-      })
-    }
-
-    const handleScroll = () => {
-      window.cancelAnimationFrame(frame)
-      frame = window.requestAnimationFrame(updateHeaderState)
-    }
-
-    updateHeaderState()
-    window.addEventListener('scroll', handleScroll, { passive: true })
-
-    return () => {
-      window.cancelAnimationFrame(frame)
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
 
   useEffect(() => {
     setMenuOpen(false)
@@ -65,7 +33,7 @@ export function Header() {
 
   return (
     <>
-      <header className={`site-header ${isCompact ? 'site-header--compact' : ''}`}>
+      <header className="site-header">
         <div className="site-header__inner container">
           <Link className="brand-link" to="/" aria-label="Diamond Suites Crystal River home">
             <LogoImage className="brand-logo" />
@@ -78,7 +46,7 @@ export function Header() {
           </nav>
 
           <Link className="header-inquiry" to="/contact">
-            Suite inquiry <ArrowUpRight aria-hidden="true" />
+            Inquire <ArrowUpRight aria-hidden="true" />
           </Link>
 
           <button

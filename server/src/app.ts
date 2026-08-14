@@ -14,11 +14,36 @@ const clientDist = path.resolve(dirname, '../../client/dist')
 const contactSchema = z.object({
   name: z.string().trim().min(2).max(80),
   email: z.email().max(160),
-  phone: z.string().trim().max(30).optional().default(''),
+  phone: z.string().trim().max(30).refine((value) => !value || /^\+?[\d\s().-]{7,30}$/.test(value), 'Enter a valid telephone number.').optional().default(''),
   interest: z.enum(['General inquiry', 'Booking a service', 'Suite availability', 'Schedule a tour']),
   message: z.string().trim().min(10).max(3000),
-  website: z.string().max(0).optional().default(''),
+  website: z.string().max(200).optional().default(''),
+  captchaToken: z.string().min(20).max(4096),
+  sourcePage: z.string().trim().max(300).default('/contact'),
+  formType: z.enum(['contact', 'inquiry']).optional(),
 })
+
+function normalizePhone(phone: string) {
+  const digits = phone.replace(/\D/g, '')
+  if (digits.length === 10) return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`
+  if (digits.length === 11 && digits.startsWith('1')) return `+1 (${digits.slice(1, 4)}) ${digits.slice(4, 7)}-${digits.slice(7)}`
+  return phone.trim()
+}
+
+async function verifyRecaptcha(token: string, remoteIp?: string) {
+  if (!config.RECAPTCHA_SECRET_KEY) throw new Error('reCAPTCHA verification is not configured.')
+  const body = new URLSearchParams({ secret: config.RECAPTCHA_SECRET_KEY, response: token })
+  if (remoteIp) body.set('remoteip', remoteIp)
+
+  const verification = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body,
+    signal: AbortSignal.timeout(8_000),
+  })
+  const result = await verification.json().catch(() => ({})) as { success?: boolean; 'error-codes'?: string[] }
+  return Boolean(verification.ok && result.success)
+}
 
 export function createApp() {
   const app = express()
@@ -30,11 +55,11 @@ export function createApp() {
       directives: {
         defaultSrc: ["'self'"],
         imgSrc: ["'self'", 'data:', 'https://www.google.com', 'https://maps.gstatic.com', 'https://*.googleapis.com'],
-        scriptSrc: ["'self'"],
+        scriptSrc: ["'self'", 'https://www.google.com', 'https://www.gstatic.com'],
         styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
         fontSrc: ["'self'", 'https://fonts.gstatic.com'],
         frameSrc: ['https://www.google.com'],
-        connectSrc: ["'self'"],
+        connectSrc: ["'self'", 'https://www.google.com'],
       },
     } : false,
     crossOriginEmbedderPolicy: false,
@@ -80,8 +105,27 @@ export function createApp() {
         return
       }
 
-      await sendContactEmail(parsed.data)
-      response.status(202).json({ message: 'Thank you. Your message has been sent to the Diamond Suites team.' })
+      if (parsed.data.website) {
+        response.status(202).json({ message: 'Thanks. Your inquiry has been sent.' })
+        return
+      }
+
+      const captchaValid = await verifyRecaptcha(parsed.data.captchaToken, request.ip)
+      if (!captchaValid) {
+        response.status(400).json({ message: 'CAPTCHA verification failed or expired. Please complete it again.' })
+        return
+      }
+
+      await sendContactEmail({
+        name: parsed.data.name,
+        email: parsed.data.email,
+        phone: normalizePhone(parsed.data.phone),
+        interest: parsed.data.interest,
+        message: parsed.data.message,
+        sourcePage: parsed.data.sourcePage,
+        submittedAt: new Date().toISOString(),
+      })
+      response.status(202).json({ message: 'Thanks. Your inquiry has been sent. We’ll be in touch soon.' })
     } catch (error) {
       next(error)
     }

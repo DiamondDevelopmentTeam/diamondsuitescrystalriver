@@ -4,11 +4,11 @@ import { ResponsiveImage } from '../components/ResponsiveImage'
 import { professionals, site } from '../data/site'
 import type { ImageKey } from '../data/images'
 
-const serviceMoments: { title: string; image: ImageKey; position: string }[] = [
-  { title: 'Skincare', image: 'service-esthetician', position: 'center 48%' },
-  { title: 'Hair', image: 'service-hair', position: 'center 44%' },
-  { title: 'Lashes & brows', image: 'service-lashes', position: 'center 42%' },
-  { title: 'Nails', image: 'service-nails', position: 'center 60%' },
+const serviceMoments: { title: string; titleLines: string[]; note: string; image: ImageKey; position: string; className: string }[] = [
+  { title: 'Skincare', titleLines: ['Skin', 'care'], note: 'Advanced care / tailored rituals', image: 'service-esthetician', position: 'center 48%', className: 'service-lookbook__item--skin' },
+  { title: 'Hair', titleLines: ['Hair'], note: 'Color / blonding / extensions', image: 'service-hair', position: 'center 44%', className: 'service-lookbook__item--hair' },
+  { title: 'Lashes & brows', titleLines: ['Lashes', '& brows'], note: 'Precision / definition', image: 'service-lashes', position: 'center 42%', className: 'service-lookbook__item--lashes' },
+  { title: 'Nails', titleLines: ['Nails'], note: 'Classic / custom artistry', image: 'service-nails', position: 'center 60%', className: 'service-lookbook__item--nails' },
 ]
 
 const galleryImages: { image: ImageKey; alt: string; position: string }[] = [
@@ -82,21 +82,37 @@ export function Home() {
         </div>
       </section>
 
-      <section className="services-editorial section-space--small">
-        <div className="container section-heading section-heading--split" data-reveal>
+      <section className="services-editorial">
+        <div className="services-editorial__heading container" data-reveal>
           <div>
-            <p className="eyebrow">For every visit</p>
-            <h2>Care, offered independently.</h2>
+            <p className="eyebrow">01 / Four disciplines</p>
+            <h2>Beauty,<br />in practice.</h2>
           </div>
-          <p>Discover the beauty and wellness specialties represented by professionals at the Crystal River location. Appointments are made directly with each provider.</p>
+          <p><span>Independent care</span>Discover the beauty and wellness specialties represented at Crystal River. Appointments are made directly with each provider.</p>
         </div>
-        <div className="service-ribbon" data-reveal>
-          {serviceMoments.map((service) => (
-            <Link to="/directory" className="service-moment" key={service.title}>
-              <ResponsiveImage image={service.image} alt="" sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 25vw" objectFit="cover" objectPosition={service.position} />
-              <span>{service.title}<ArrowUpRight aria-hidden="true" /></span>
+
+        <div className="service-lookbook container" aria-label="Services at Diamond Suites Crystal River">
+          <span className="service-lookbook__ghost" aria-hidden="true">DISCIPLINES</span>
+          {serviceMoments.map((service, index) => (
+            <Link to="/directory" className={`service-lookbook__item ${service.className}`} key={service.title} aria-label={`Explore ${service.title} professionals`}>
+              <figure className="service-lookbook__media" data-reveal>
+                <ResponsiveImage
+                  image={service.image}
+                  alt={`${service.title} service detail`}
+                  sizes={index === 0 ? '(max-width: 640px) 72vw, (max-width: 900px) 62vw, 52vw' : '(max-width: 640px) 48vw, (max-width: 900px) 42vw, 38vw'}
+                  objectFit="cover"
+                  objectPosition={service.position}
+                />
+              </figure>
+              <div className="service-lookbook__label" data-reveal>
+                <span className="service-lookbook__number">{String(index + 1).padStart(2, '0')} / 04</span>
+                <h3>{service.titleLines.map((line) => <span key={line}>{line}</span>)}</h3>
+                <p>{service.note}</p>
+                <ArrowUpRight aria-hidden="true" />
+              </div>
             </Link>
           ))}
+          <p className="service-lookbook__axis" aria-hidden="true">825 N CITRUS AVE / CRYSTAL RIVER / FL</p>
         </div>
       </section>
 
@@ -149,7 +165,7 @@ export function Home() {
             <p className="eyebrow">A closer look</p>
             <h2>Light, calm, and carefully finished.</h2>
           </div>
-          <Link className="text-link" to="/about">Explore the gallery <ArrowRight aria-hidden="true" /></Link>
+          <Link className="text-link" to="/gallery">Explore the gallery <ArrowRight aria-hidden="true" /></Link>
         </div>
         <div className="container visual-tour__grid" data-reveal>
           {galleryImages.map((galleryImage) => (

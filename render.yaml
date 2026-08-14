@@ -14,17 +14,15 @@ services:
         value: "4100"
       - key: ALLOWED_ORIGINS
         value: https://diamondsuitescrystalriver.com,https://www.diamondsuitescrystalriver.com
-      - key: CONTACT_TO
+      - key: INQUIRY_RECIPIENT_EMAIL
         value: ashley@diamondsuitesocala.com
-      - key: CONTACT_FROM
-        value: website@diamondsuitescrystalriver.com
-      - key: SMTP_HOST
+      - key: GRAPH_TENANT_ID
         sync: false
-      - key: SMTP_PORT
-        value: "587"
-      - key: SMTP_SECURE
-        value: "false"
-      - key: SMTP_USER
+      - key: GRAPH_CLIENT_ID
         sync: false
-      - key: SMTP_PASS
+      - key: GRAPH_CLIENT_SECRET
+        sync: false
+      - key: GRAPH_SENDER_EMAIL
+        sync: false
+      - key: RECAPTCHA_SECRET_KEY
         sync: false

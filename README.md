@@ -5,10 +5,10 @@ A full React + TypeScript client and Express + TypeScript server for `diamondsui
 The site includes:
 
 - An original editorial design for Crystal River using the approved Diamond identity and location photography
-- Responsive pages for Home, About, Suites, FAQs, Directory, Contact, Salon Etiquette, Privacy Policy, and 404
+- Responsive pages for Home, About, Suites, FAQs, Professionals/Directory, Gallery, Contact, Salon Etiquette, Privacy Policy, and 404
 - Compact sticky navigation with an accessible mobile menu
 - The verified Crystal River professional directory, contact details, and location information
-- Contact form API with validation, rate limiting, spam honeypot, and optional SMTP delivery
+- Contact form API with validation, rate limiting, a spam honeypot, reCAPTCHA v2 verification, and Microsoft Graph delivery
 - Local approved images instead of hotlinks
 - GitHub Pages client deployment workflow
 - Docker and Render full-stack deployment files
@@ -62,10 +62,10 @@ All browser form routes are centralized in `client/src/config/api.ts`. Configure
 VITE_FORMS_API_BASE_URL=https://api.diamondsuitescrystalriver.com
 VITE_CONTACT_FORM_ENDPOINT=/api/contact
 VITE_INQUIRY_FORM_ENDPOINT=/api/inquiry
-VITE_TURNSTILE_SITE_KEY=
+VITE_RECAPTCHA_SITE_KEY=
 ```
 
-Only public browser configuration belongs in the client environment. Microsoft Graph authentication, email delivery, recipient routing, and Turnstile secret verification must remain in the API or Azure Function.
+Only public browser configuration belongs in the client environment. Microsoft Graph authentication, email delivery, recipient routing, and the reCAPTCHA secret must remain in the API or Azure Function.
 
 ## Production build
 
@@ -84,19 +84,18 @@ SERVE_CLIENT=true
 
 ## Contact form email
 
-Configure the SMTP values in `server/.env`. SMTP credentials must never be committed.
+The bundled API uses Microsoft Graph's client-credentials flow. Register a Microsoft Entra application, grant the **Application** form of `Mail.Send`, grant administrator consent, and limit mailbox access with an Exchange Online application access policy or application RBAC where appropriate. Configure these private values only in `server/.env` or the API host:
 
 ```env
-SMTP_HOST=smtp.your-provider.com
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=your-user
-SMTP_PASS=your-password
-CONTACT_TO=ashley@diamondsuitesocala.com
-CONTACT_FROM=website@diamondsuitescrystalriver.com
+GRAPH_TENANT_ID=
+GRAPH_CLIENT_ID=
+GRAPH_CLIENT_SECRET=
+GRAPH_SENDER_EMAIL=
+INQUIRY_RECIPIENT_EMAIL=ashley@diamondsuitesocala.com
+RECAPTCHA_SECRET_KEY=
 ```
 
-Without SMTP, local development accepts the form and logs a shortened submission to the server console. Production intentionally returns an error until SMTP is configured, preventing leads from disappearing silently.
+The sender must be a real mailbox in the configured tenant. The submitted visitor email is used only as `replyTo`; the API never spoofs the visitor as the sender. The API intentionally rejects delivery when Graph or reCAPTCHA is not configured, preventing leads from disappearing silently.
 
 ## Deployment
 

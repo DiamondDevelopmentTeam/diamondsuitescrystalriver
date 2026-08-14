@@ -21,7 +21,7 @@ export const formsApiConfig = Object.freeze({
     contact: normalizeEndpoint(readEnvironmentValue(import.meta.env.VITE_CONTACT_FORM_ENDPOINT), '/api/contact'),
     inquiry: normalizeEndpoint(readEnvironmentValue(import.meta.env.VITE_INQUIRY_FORM_ENDPOINT), '/api/contact'),
   }),
-  turnstileSiteKey: readEnvironmentValue(import.meta.env.VITE_TURNSTILE_SITE_KEY),
+  recaptchaSiteKey: readEnvironmentValue(import.meta.env.VITE_RECAPTCHA_SITE_KEY),
 })
 
 export function getFormsApiUrl(endpoint: FormsApiEndpoint) {

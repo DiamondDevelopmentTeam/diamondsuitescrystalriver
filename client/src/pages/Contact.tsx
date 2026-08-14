@@ -16,7 +16,7 @@ export function Contact() {
       <PageHero eyebrow="Start a Conversation" title="Contact Diamond Suites" image="about-banner" description="Questions about a service, a professional, or suite availability? Reach out to our team." />
       <section className="marble-surface section-space">
         <div className="container contact-layout">
-          <aside className="contact-details">
+          <aside className="contact-details" data-reveal>
             <p className="eyebrow">Contact Details</p>
             <h2 className="script-heading">We would love to hear from you</h2>
             <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer"><MapPin /><span>{site.addressLine1}<br />{site.addressLine2}</span></a>
@@ -30,7 +30,7 @@ export function Contact() {
               <iframe title="Diamond Suites Crystal River map" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=825%20N%20Citrus%20Ave%20Crystal%20River%20FL%2034428&output=embed" />
             </div>
           </aside>
-          <div>
+          <div data-reveal>
             <p className="eyebrow">Send a Message</p>
             <h2>Tell us how we can help</h2>
             <ContactForm />
@@ -42,7 +42,7 @@ export function Contact() {
         <div className="container">
           <p className="eyebrow centered">Our Florida Locations</p>
           <h2 className="script-heading centered">Three destinations, one Diamond standard</h2>
-          <div className="location-grid">
+          <div className="location-grid" data-reveal>
             {locations.map((location) => location.href === '/' ? (
               <Link key={location.name} to="/">
                 <MapPin />

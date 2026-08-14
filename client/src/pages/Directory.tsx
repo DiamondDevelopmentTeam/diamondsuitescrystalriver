@@ -70,7 +70,7 @@ export function Directory() {
     <>
       <PageHero eyebrow="Seven Private Suites" title="Meet Our Professionals" image="directory-banner" description="Discover the independent beauty and wellness specialists who make Diamond Suites Crystal River shine." />
       <section className="marble-surface section-space">
-        <div className="container directory-intro centered">
+        <div className="container directory-intro centered" data-reveal>
           <p className="eyebrow">The Crystal River Directory</p>
           <h2 className="script-heading">Select a suite to meet the professional inside</h2>
           <p>Each professional operates an independent business in a private suite, providing personalized service in a comfortable, elegant setting.</p>
@@ -79,7 +79,7 @@ export function Directory() {
           {directoryEntries.map((entry) => {
             if (!isProfessional(entry)) {
               return (
-                <article className="professional-card professional-card--unlisted" key={entry.suite}>
+                <article className="professional-card professional-card--unlisted" key={entry.suite} data-reveal>
                   <div className="professional-card__image">
                     <ResponsiveImage image={entry.image} alt="Hallway outside the private suites" sizes="(max-width: 640px) 100vw, (max-width: 900px) 42vw, 22vw" objectFit="cover" objectPosition={entry.imagePosition ?? 'center'} />
                     <span>Suite {entry.suite}</span>
@@ -94,7 +94,7 @@ export function Directory() {
             }
 
             return (
-              <article className="professional-card" key={entry.suite}>
+              <article className="professional-card" key={entry.suite} data-reveal>
                 <div className="professional-card__image">
                   <ProfessionalPortrait src={entry.image} name={entry.name} position={entry.imagePosition} />
                   <span>Suite {entry.suite}</span>

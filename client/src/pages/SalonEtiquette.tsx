@@ -17,7 +17,7 @@ export function SalonEtiquette() {
       <section className="marble-surface section-space legal-page">
         <div className="container legal-container">
           <p>Diamond Suites Crystal River strives to provide a relaxing, professional, and comfortable experience for every guest. Because the professionals within our suites operate independent businesses, booking and service policies may vary. Please review both these shared-building guidelines and the policies of your individual provider.</p>
-          <div className="policy-list">
+          <div className="policy-list" data-reveal>
             {policies.map((policy, index) => (
               <article key={policy.title}><span>{String(index + 1).padStart(2, '0')}</span><div><h2>{policy.title}</h2><p>{policy.text}</p></div></article>
             ))}
