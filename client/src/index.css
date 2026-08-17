@@ -2992,3 +2992,48 @@ address {
     width: 100%;
   }
 }
+
+/* =========================================================
+   IMAGE LOADING PERFORMANCE
+   Images should appear immediately when available.
+   Keep copy/text animations, but do not animate images in.
+   ========================================================= */
+
+.reveal-pending[data-reveal-type='image'],
+.is-revealed[data-reveal-type='image'] {
+  opacity: 1 !important;
+
+  clip-path: none !important;
+
+  transform: none !important;
+
+  transition: none !important;
+
+  animation: none !important;
+}
+
+/* Never keep an image hidden while waiting for reveal logic */
+[data-reveal-type='image'] {
+  opacity: 1 !important;
+  visibility: visible !important;
+  clip-path: none !important;
+}
+
+/* =========================================================
+   IMAGE PLACEHOLDERS
+   Avoid bright white boxes during network loading.
+   ========================================================= */
+
+.home-hero__image,
+.page-hero__media,
+.editorial-intro__image,
+.service-lookbook__media,
+.suite-opportunity__visual,
+.professional-card__image,
+.visual-tour__item,
+.location-feature__image,
+.gallery-page__item,
+.about-gallery figure,
+.profile-dialog__portrait {
+  background: #dedbd4;
+}

@@ -24,12 +24,22 @@ export function PageHero({
         pictureClassName="page-hero__media"
         objectFit="cover"
       />
-      <div className="page-hero__content container" data-reveal>
-        {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+
+      <div
+        className="page-hero__content container"
+        data-reveal
+      >
+        {eyebrow ? (
+          <p className="eyebrow">
+            {eyebrow}
+          </p>
+        ) : null}
 
         <h1>{title}</h1>
 
-        {description ? <p>{description}</p> : null}
+        {description ? (
+          <p>{description}</p>
+        ) : null}
       </div>
     </section>
   )
