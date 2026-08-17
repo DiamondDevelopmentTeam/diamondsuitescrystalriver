@@ -15,16 +15,40 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
+        {/* Homepage */}
         <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
+
+        {/* Main pages */}
         <Route path="suites" element={<Suites />} />
-        <Route path="faqs" element={<Faqs />} />
-        <Route path="gallery" element={<Gallery />} />
         <Route path="directory" element={<Directory />} />
-        <Route path="professionals" element={<Directory />} />
+        <Route path="gallery" element={<Gallery />} />
+        <Route path="about" element={<About />} />
+        <Route path="faqs" element={<Faqs />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="salon-etiquette" element={<SalonEtiquette />} />
-        <Route path="privacy-policy" element={<PrivacyPolicy />} />
+
+        {/* Legal / secondary pages */}
+        <Route
+          path="privacy-policy"
+          element={<PrivacyPolicy />}
+        />
+
+        <Route
+          path="salon-etiquette"
+          element={<SalonEtiquette />}
+        />
+
+        {/* Backwards-compatible old URLs */}
+        <Route
+          path="privacypolicy"
+          element={<PrivacyPolicy />}
+        />
+
+        <Route
+          path="salonetiquette"
+          element={<SalonEtiquette />}
+        />
+
+        {/* 404 */}
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
