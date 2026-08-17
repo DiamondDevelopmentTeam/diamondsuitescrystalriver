@@ -1,26 +1,37 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-
 import App from './App'
 import './index.css'
 
-const rootElement = document.getElementById('root')
-
-if (!rootElement) {
-  throw new Error('Unable to find the root application element.')
-}
-
-if ('scrollRestoration' in window.history) {
-  window.history.scrollRestoration = 'manual'
-}
-
-const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
-
-createRoot(rootElement).render(
+createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter basename={basename}>
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </StrictMode>,
 )
+
+/* =========================================================
+   SERVICE WORKER
+   Production only
+   ========================================================= */
+
+if (
+  import.meta.env.PROD &&
+  'serviceWorker' in navigator
+) {
+  window.addEventListener('load', () => {
+    const serviceWorkerUrl =
+      `${import.meta.env.BASE_URL}sw.js`
+
+    navigator.serviceWorker
+      .register(serviceWorkerUrl)
+      .catch((error) => {
+        console.error(
+          'Service worker registration failed:',
+          error,
+        )
+      })
+  })
+}

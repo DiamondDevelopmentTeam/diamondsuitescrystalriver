@@ -51,6 +51,20 @@ const gallery: {
   },
 ]
 
+const leftColumn = gallery
+  .map((item, index) => ({
+    ...item,
+    originalIndex: index,
+  }))
+  .filter((item) => item.originalIndex % 2 === 0)
+
+const rightColumn = gallery
+  .map((item, index) => ({
+    ...item,
+    originalIndex: index,
+  }))
+  .filter((item) => item.originalIndex % 2 === 1)
+
 export function Gallery() {
   return (
     <>
@@ -62,6 +76,9 @@ export function Gallery() {
       />
 
       <section className="gallery-page section-space">
+        {/* =========================
+            INTRO
+            ========================= */}
         <div
           className="container gallery-page__intro"
           data-reveal
@@ -83,34 +100,88 @@ export function Gallery() {
           </p>
         </div>
 
-        <div className="container gallery-page__grid">
-          {gallery.map((item, index) => (
-            <figure
-              data-reveal
-              className={`gallery-page__item gallery-page__item--${
-                (index % 4) + 1
-              }`}
-              key={item.image}
-            >
-              <ResponsiveImage
-                image={item.image}
-                alt={item.alt}
-                sizes="
-                  (max-width: 640px) calc(100vw - 32px),
-                  (max-width: 900px) 50vw,
-                  33vw
-                "
-                objectFit="cover"
-                objectPosition={item.position}
-              />
+        {/* =========================
+            GALLERY
 
-              <figcaption>
-                {String(index + 1).padStart(2, '0')} / Crystal River
-              </figcaption>
-            </figure>
-          ))}
+            First 4 images:
+            priority loading
+
+            Remaining images:
+            normal lazy loading
+            ========================= */}
+        <div className="container gallery-page__grid">
+          {/* LEFT COLUMN */}
+          <div className="gallery-page__column">
+            {leftColumn.map((item) => {
+              const shouldPrioritize = item.originalIndex < 4
+
+              return (
+                <figure
+                  className="gallery-page__item"
+                  key={item.image}
+                >
+                  <ResponsiveImage
+                    image={item.image}
+                    alt={item.alt}
+                    sizes="
+                      (max-width: 640px) calc(100vw - 32px),
+                      (max-width: 900px) calc(50vw - 28px),
+                      (max-width: 1400px) calc(50vw - 60px),
+                      640px
+                    "
+                    objectFit="cover"
+                    objectPosition={item.position}
+                    priority={shouldPrioritize}
+                  />
+
+                  {/* <figcaption>
+                    {String(item.originalIndex + 1).padStart(2, '0')}
+                    {' / '}
+                    Crystal River
+                  </figcaption> */}
+                </figure>
+              )
+            })}
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div className="gallery-page__column">
+            {rightColumn.map((item) => {
+              const shouldPrioritize = item.originalIndex < 4
+
+              return (
+                <figure
+                  className="gallery-page__item"
+                  key={item.image}
+                >
+                  <ResponsiveImage
+                    image={item.image}
+                    alt={item.alt}
+                    sizes="
+                      (max-width: 640px) calc(100vw - 32px),
+                      (max-width: 900px) calc(50vw - 28px),
+                      (max-width: 1400px) calc(50vw - 60px),
+                      640px
+                    "
+                    objectFit="cover"
+                    objectPosition={item.position}
+                    priority={shouldPrioritize}
+                  />
+{/* 
+                  <figcaption>
+                    {String(item.originalIndex + 1).padStart(2, '0')}
+                    {' / '}
+                    Crystal River
+                  </figcaption> */}
+                </figure>
+              )
+            })}
+          </div>
         </div>
 
+        {/* =========================
+            CTA
+            ========================= */}
         <div
           className="container gallery-page__cta"
           data-reveal
