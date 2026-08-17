@@ -2668,3 +2668,327 @@ address {
     font-size: 0.86rem !important;
   }
 }
+/* =========================================================
+   CONTACT FORM — CLEAN EDITORIAL REDESIGN
+   Keep this at the VERY END of the stylesheet
+   ========================================================= */
+
+.contact-form-section {
+  min-width: 0;
+}
+
+.contact-form-section__heading {
+  margin-bottom: 30px;
+}
+
+.contact-form-section__heading .eyebrow {
+  margin-bottom: 12px;
+}
+
+.contact-form-section__heading h2 {
+  max-width: 620px;
+
+  margin: 0;
+
+  color: #111;
+
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 3.2vw, 3.5rem);
+  font-weight: 600;
+
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+
+/* =========================================================
+   FORM CONTAINER
+   ========================================================= */
+
+.contact-form {
+  padding: clamp(30px, 4vw, 48px);
+
+  border: 1px solid rgba(17, 17, 17, 0.14);
+
+  background: #fff;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   TWO-COLUMN GRID
+   ========================================================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  column-gap: 32px;
+  row-gap: 6px;
+}
+
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
+.contact-form label {
+  display: grid;
+
+  gap: 10px;
+
+  margin-bottom: 24px;
+
+  color: #111;
+
+  font-size: 0.88rem;
+  font-weight: 700;
+
+  letter-spacing: 0.075em;
+
+  line-height: 1.35;
+
+  text-transform: uppercase;
+}
+
+.required-mark {
+  color: #9b6c45;
+}
+
+.optional-mark {
+  color: #777;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   INPUTS / SELECT / TEXTAREA
+   ========================================================= */
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+
+  min-height: 52px;
+
+  padding: 10px 0 12px;
+
+  border: 0;
+  border-bottom: 1px solid rgba(17, 17, 17, 0.38);
+  border-radius: 0;
+
+  background: transparent;
+
+  color: #111;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  outline: none;
+
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+
+/* cleaner select */
+.contact-form select {
+  cursor: pointer;
+
+  appearance: auto;
+}
+
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-bottom-color: #111;
+
+  box-shadow:
+    0 2px 0 #111;
+
+  outline: none;
+}
+
+
+/* =========================================================
+   TEXTAREA
+   Stop it from being enormous
+   ========================================================= */
+
+.contact-form textarea {
+  min-height: 150px;
+  max-height: 320px;
+
+  resize: vertical;
+}
+
+
+/* =========================================================
+   FULL-WIDTH MESSAGE FIELD
+   If your textarea is inside a label in .form-grid,
+   allow it to span both columns.
+   ========================================================= */
+
+.contact-form label:has(textarea) {
+  grid-column: 1 / -1;
+}
+
+
+/* =========================================================
+   FORM STATUS / RECAPTCHA MESSAGE
+   ========================================================= */
+
+.form-feedback {
+  margin: 20px 0 0;
+
+  padding: 16px 18px;
+
+  border-left: 3px solid #111;
+
+  background: #f5f2ec;
+
+  color: #333;
+
+  font-size: 0.9rem;
+
+  line-height: 1.6;
+}
+
+
+/* current CAPTCHA configuration warning */
+.form-feedback--error {
+  border-left-color: #9b493c;
+
+  background: #f8ebe7;
+
+  color: #75392f;
+}
+
+
+/* success message */
+.form-feedback--success {
+  border-left-color: #111;
+
+  background: #f1f1ee;
+
+  color: #111;
+}
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.contact-form button[type='submit'] {
+  display: inline-flex;
+
+  min-width: 190px;
+  min-height: 54px;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 22px;
+
+  padding: 14px 24px;
+
+  border: 1px solid #111;
+
+  background: #111;
+
+  color: #fff;
+
+  font-size: 0.92rem;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.contact-form button[type='submit']:hover:not(:disabled) {
+  background: #fff;
+
+  color: #111;
+}
+
+.contact-form button[type='submit']:disabled {
+  cursor: not-allowed;
+
+  opacity: 0.48;
+}
+
+
+/* =========================================================
+   ERRORS
+   ========================================================= */
+
+.contact-form [aria-invalid='true'] {
+  border-bottom-color: #9b493c;
+
+  box-shadow:
+    0 1px 0 #9b493c;
+}
+
+.field-error {
+  margin-top: 3px;
+
+  color: #8b392e;
+
+  font-size: 0.84rem;
+
+  font-weight: 600;
+
+  letter-spacing: 0;
+
+  line-height: 1.45;
+
+  text-transform: none;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .contact-form {
+    padding: 26px 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+
+    gap: 0;
+  }
+
+  .contact-form label:has(textarea) {
+    grid-column: auto;
+  }
+
+  .contact-form textarea {
+    min-height: 140px;
+  }
+
+  .contact-form button[type='submit'] {
+    width: 100%;
+  }
+}
