@@ -1219,3 +1219,715 @@ body { font-size: 17px; }
   .service-lookbook:has(.service-lookbook__item:hover) .service-lookbook__item:not(:hover) { opacity: 1; }
   .service-lookbook__item:hover { transform: none; }
 }
+
+/* =========================================================
+   HEADER — FINAL READABILITY OVERRIDES
+   Keep this at the END of the stylesheet.
+   ========================================================= */
+
+.site-header {
+  position: sticky;
+  z-index: 1000;
+  top: 0;
+
+  height: 94px;
+
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.98);
+
+  box-shadow: none;
+
+  /* Keep header completely stable while scrolling */
+  transition: none;
+}
+
+/* Do not shrink the header on scroll */
+.site-header--compact {
+  height: 94px;
+
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.site-header__inner {
+  display: grid;
+
+  grid-template-columns:
+    minmax(270px, 1fr)
+    auto
+    minmax(230px, 1fr);
+
+  align-items: center;
+
+  gap: clamp(28px, 3vw, 48px);
+
+  height: 100%;
+}
+
+/* =========================
+   LOGO
+   ========================= */
+
+.brand-link {
+  display: flex;
+  min-width: 0;
+
+  align-items: center;
+  justify-self: start;
+}
+
+.brand-logo,
+.site-header--compact .brand-logo {
+  width: min(310px, 100%);
+  max-width: 310px;
+
+  height: auto;
+
+  object-fit: contain;
+}
+
+/* =========================
+   DESKTOP NAVIGATION
+   ========================= */
+
+.desktop-nav {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+
+  gap: clamp(24px, 2.2vw, 38px);
+}
+
+.desktop-nav a {
+  position: relative;
+
+  padding-block: 12px;
+
+  color: #111;
+
+  /*
+   * IMPORTANT:
+   * This used to be 0.68rem,
+   * which was only about 11px.
+   */
+  font-size: 0.96rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.055em;
+
+  text-transform: uppercase;
+
+  line-height: 1.2;
+
+  white-space: nowrap;
+}
+
+.desktop-nav a::after {
+  position: absolute;
+
+  right: 0;
+  bottom: 4px;
+  left: 0;
+
+  height: 2px;
+
+  background: var(--brass);
+
+  content: '';
+
+  transform: scaleX(0);
+  transform-origin: left;
+
+  transition: transform 200ms var(--ease);
+}
+
+.desktop-nav a:hover::after,
+.desktop-nav a.active::after {
+  transform: scaleX(1);
+}
+
+/* =========================
+   INQUIRE BUTTON
+   ========================= */
+
+.header-inquiry {
+  display: inline-flex;
+  min-height: 50px;
+
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+
+  gap: 10px;
+  padding: 13px 22px;
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
+
+  /*
+   * This used to be 0.69rem.
+   * Increase it so it matches the nav visually.
+   */
+  font-size: 0.9rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.065em;
+
+  text-transform: uppercase;
+
+  line-height: 1;
+}
+
+.header-inquiry svg {
+  width: 18px;
+  height: 18px;
+
+  flex: 0 0 auto;
+
+  transition: transform 180ms ease;
+}
+
+.header-inquiry:hover {
+  background: var(--brass);
+  color: #111;
+}
+
+.header-inquiry:hover svg {
+  transform: translate(3px, -3px);
+}
+
+/* =========================
+   MOBILE MENU BUTTON
+   ========================= */
+
+.mobile-menu-button {
+  display: none;
+
+  width: 50px;
+  height: 50px;
+
+  place-items: center;
+
+  background: transparent;
+  color: #111;
+
+  cursor: pointer;
+}
+
+.mobile-menu-button svg {
+  width: 27px;
+  height: 27px;
+}
+
+/* =========================
+   MOBILE MENU
+   ========================= */
+
+.mobile-menu-backdrop {
+  position: fixed;
+  z-index: 2000;
+
+  inset: 0;
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  background: rgba(12, 27, 23, 0.48);
+
+  animation: fade-in 180ms ease both;
+}
+
+.mobile-menu {
+  width: min(440px, 100%);
+  min-height: 100%;
+
+  padding: 30px;
+
+  overflow-y: auto;
+
+  background: var(--paper);
+
+  animation: menu-in 340ms var(--ease) both;
+}
+
+.mobile-menu__top {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  padding-bottom: 32px;
+
+  border-bottom: 1px solid var(--line);
+}
+
+.mobile-menu__logo {
+  width: min(285px, calc(100% - 64px));
+
+  height: auto;
+
+  object-fit: contain;
+}
+
+.mobile-menu__top button {
+  display: grid;
+
+  width: 48px;
+  height: 48px;
+
+  flex: 0 0 auto;
+
+  place-items: center;
+
+  background: #111;
+  color: #fff;
+
+  cursor: pointer;
+}
+
+.mobile-menu__top button svg {
+  width: 22px;
+  height: 22px;
+}
+
+.mobile-menu__links {
+  display: grid;
+
+  margin-top: 22px;
+}
+
+.mobile-menu__links a {
+  display: flex;
+
+  min-height: 68px;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  border-bottom: 1px solid var(--line);
+
+  color: #111;
+
+  font-family: var(--serif);
+
+  /*
+   * Already larger than desktop,
+   * but bump it a little for readability.
+   */
+  font-size: 1.7rem;
+
+  font-weight: 600;
+
+  letter-spacing: -0.035em;
+
+  line-height: 1.1;
+}
+
+.mobile-menu__links a.active {
+  color: var(--brass);
+}
+
+.mobile-menu__links svg {
+  width: 20px;
+  height: 20px;
+
+  flex: 0 0 auto;
+}
+
+/* =========================
+   MOBILE CONTACT INFORMATION
+   ========================= */
+
+.mobile-menu__contact {
+  margin-top: 40px;
+
+  color: var(--muted);
+
+  font-size: 1rem;
+
+  line-height: 1.65;
+}
+
+.mobile-menu__contact a {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: #111;
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  overflow-wrap: anywhere;
+}
+
+.mobile-menu__contact p {
+  margin-top: 20px;
+
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   LAPTOP
+   ========================================================= */
+
+@media (max-width: 1180px) {
+  .site-header__inner {
+    grid-template-columns:
+      minmax(225px, 1fr)
+      auto
+      minmax(170px, 1fr);
+
+    gap: 20px;
+  }
+
+  .brand-logo,
+  .site-header--compact .brand-logo {
+    max-width: 265px;
+  }
+
+  .desktop-nav {
+    gap: 18px;
+  }
+
+  .desktop-nav a {
+    font-size: 0.86rem;
+    letter-spacing: 0.04em;
+  }
+
+  .header-inquiry {
+    min-height: 48px;
+
+    padding-inline: 17px;
+
+    font-size: 0.82rem;
+  }
+}
+
+/* =========================================================
+   TABLET / MOBILE NAV SWITCH
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .site-header,
+  .site-header--compact {
+    height: 82px;
+  }
+
+  .site-header__inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .brand-logo,
+  .site-header--compact .brand-logo {
+    width: min(285px, 100%);
+    max-width: 285px;
+  }
+
+  .desktop-nav,
+  .header-inquiry {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: grid;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .site-header,
+  .site-header--compact {
+    height: 78px;
+  }
+
+  .brand-logo,
+  .site-header--compact .brand-logo {
+    width: min(245px, 100%);
+    max-width: 245px;
+  }
+
+  .mobile-menu {
+    padding: 24px;
+  }
+
+  .mobile-menu__logo {
+    width: min(245px, calc(100% - 60px));
+  }
+
+  .mobile-menu__links a {
+    min-height: 64px;
+
+    font-size: 1.55rem;
+  }
+
+  .mobile-menu__contact,
+  .mobile-menu__contact a,
+  .mobile-menu__contact p {
+    font-size: 1rem;
+  }
+}
+
+/* =========================================================
+   BEAUTY IN PRACTICE — STATIC + TEXT READABILITY FIX
+   Keep this at the very end of the stylesheet
+   ========================================================= */
+
+.service-lookbook--static .service-lookbook__item {
+  cursor: default;
+  pointer-events: none;
+  transform: none !important;
+  transition: none !important;
+  opacity: 1 !important;
+}
+
+/* stop any parent hover fading logic */
+.service-lookbook--static:has(.service-lookbook__item:hover)
+  .service-lookbook__item:not(:hover) {
+  opacity: 1 !important;
+}
+
+/* stop image hover animation */
+.service-lookbook--static .service-lookbook__media img {
+  transform: none !important;
+  transition: none !important;
+  will-change: auto;
+  filter: saturate(0.56) contrast(1.04) brightness(0.97);
+}
+
+/* if old hover styles still exist, neutralize them */
+.service-lookbook--static .service-lookbook__item:hover {
+  transform: none !important;
+  z-index: inherit !important;
+}
+
+.service-lookbook--static .service-lookbook__item:hover .service-lookbook__media img {
+  transform: none !important;
+  filter: saturate(0.56) contrast(1.04) brightness(0.97) !important;
+}
+
+.service-lookbook--static .service-lookbook__label svg,
+.service-lookbook--static .service-lookbook__item:hover .service-lookbook__label svg {
+  transform: none !important;
+  transition: none !important;
+}
+
+/* =========================================================
+   TEXT READABILITY
+   Give the text a soft editorial backdrop so it stays visible
+   ========================================================= */
+
+.service-lookbook--static .service-lookbook__label {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  /* subtle background plate */
+  padding: 0.85rem 1rem 0.8rem;
+  background: rgba(244, 241, 234, 0.84);
+  backdrop-filter: blur(6px);
+
+  /* subtle separation from the image */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+  /* keep it clean and editorial */
+  border-radius: 0;
+}
+
+/* stronger contrast for the number */
+.service-lookbook--static .service-lookbook__number {
+  color: #6d857e;
+}
+
+/* main headings */
+.service-lookbook--static .service-lookbook__label h3 {
+  color: #111;
+  text-shadow: none;
+  line-height: 0.92;
+}
+
+/* supporting text */
+.service-lookbook--static .service-lookbook__label p {
+  color: rgba(17, 17, 17, 0.8);
+  text-shadow: none;
+}
+
+/* optional: keep skin care readable over the darker image */
+.service-lookbook--static .service-lookbook__item--skin .service-lookbook__label {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 15, 15, 0.18) 0%,
+    rgba(15, 15, 15, 0.38) 100%
+  );
+  backdrop-filter: blur(4px);
+  box-shadow: none;
+}
+
+.service-lookbook--static .service-lookbook__item--skin .service-lookbook__number,
+.service-lookbook--static .service-lookbook__item--skin .service-lookbook__label h3,
+.service-lookbook--static .service-lookbook__item--skin .service-lookbook__label p {
+  color: #fff;
+}
+
+/* Nails text container only */
+.service-lookbook--static
+  .service-lookbook__item--nails
+  .service-lookbook__label {
+  left: -140px !important;
+  right: auto !important;
+
+  width: 290px !important;
+  min-height: 215px;
+
+  padding: 22px 24px 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: rgba(244, 241, 234, 0.92);
+  backdrop-filter: blur(6px);
+}
+
+/* Move Hair image/composition slightly left */
+.service-lookbook--static .service-lookbook__item--hair {
+  right: 10% !important;
+}
+
+/* =========================================================
+   GALLERY PAGE — TIGHTER EDITORIAL LAYOUT
+   ========================================================= */
+
+.gallery-page__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+
+  /* smaller space between images */
+  gap: clamp(12px, 1.4vw, 20px);
+
+  align-items: start;
+}
+
+/* Remove the huge vertical gaps */
+.gallery-page__item {
+  margin: 0 0 clamp(16px, 2.5vw, 34px);
+  overflow: hidden;
+}
+
+/* Keep the editorial layout, just bring everything closer */
+
+.gallery-page__item--1 {
+  grid-column: 1 / span 7;
+  aspect-ratio: 16 / 11;
+}
+
+.gallery-page__item--2 {
+  grid-column: 8 / span 5;
+  aspect-ratio: 4 / 5;
+
+  /* was much farther down */
+  margin-top: 24px;
+}
+
+.gallery-page__item--3 {
+  grid-column: 1 / span 5;
+  aspect-ratio: 4 / 5;
+
+  /* bring this closer to the previous row */
+  margin-top: -8px;
+}
+
+.gallery-page__item--4 {
+  grid-column: 6 / span 7;
+  aspect-ratio: 16 / 10;
+
+  /* subtle stagger instead of large gap */
+  margin-top: 16px;
+}
+
+/* Images */
+.gallery-page__item img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 500ms var(--ease);
+}
+
+/* keep hover extremely subtle */
+.gallery-page__item:hover img {
+  transform: scale(1.008);
+}
+
+/* captions should stay close to the image */
+.gallery-page__item figcaption {
+  padding-top: 8px;
+
+  color: var(--muted);
+
+  font-size: 0.7rem;
+  font-weight: 600;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .gallery-page__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .gallery-page__item--1,
+  .gallery-page__item--2,
+  .gallery-page__item--3,
+  .gallery-page__item--4 {
+    grid-column: auto;
+    margin-top: 0;
+    margin-bottom: 22px;
+  }
+
+  .gallery-page__item--1,
+  .gallery-page__item--4 {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .gallery-page__grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .gallery-page__item--1,
+  .gallery-page__item--2,
+  .gallery-page__item--3,
+  .gallery-page__item--4 {
+    grid-column: 1;
+    margin: 0 0 18px;
+    aspect-ratio: 4 / 5;
+  }
+}
