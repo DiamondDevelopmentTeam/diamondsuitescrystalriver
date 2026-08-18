@@ -3037,3 +3037,534 @@ address {
 .profile-dialog__portrait {
   background: #dedbd4;
 }
+/* =========================================================
+   PROFESSIONAL DIRECTORY — UPDATED PROFILES
+   2026 profile refresh
+   ========================================================= */
+
+.directory-intro {
+  max-width: 900px;
+  margin-bottom: clamp(48px, 6vw, 76px);
+}
+
+.directory-intro > p:last-child {
+  max-width: 760px;
+  margin-inline: auto;
+  color: #555;
+  font-size: 1rem !important;
+  line-height: 1.75;
+}
+
+.directory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 3vw, 40px);
+}
+
+.professional-card {
+  display: grid;
+  grid-template-columns: minmax(230px, 0.9fr) minmax(0, 1fr);
+  min-height: 520px;
+  overflow: hidden;
+  border: 1px solid rgba(17, 17, 17, 0.2);
+  background: #fff;
+}
+
+.professional-card__image {
+  position: relative;
+  min-height: 520px;
+  margin: 0 !important;
+  overflow: hidden;
+  background: #e9e6df !important;
+}
+
+.professional-card__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none !important;
+  transition: none !important;
+}
+
+.professional-card__image span {
+  position: absolute;
+  top: 18px !important;
+  left: 18px !important;
+  padding: 9px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(17, 17, 17, 0.9) !important;
+  color: #fff;
+  font-size: 0.82rem !important;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.professional-card__body {
+  justify-content: center;
+  padding: clamp(30px, 4vw, 54px) !important;
+}
+
+.professional-card__body .eyebrow {
+  margin-bottom: 14px;
+  color: #111 !important;
+  font-size: 0.84rem !important;
+}
+
+.professional-card__body h2 {
+  margin: 0 0 8px;
+  color: #111;
+  font-family: var(--serif);
+  font-size: clamp(2.35rem, 3.5vw, 3.55rem);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 0.96;
+}
+
+.professional-card__body h3 {
+  margin: 0 0 24px;
+  color: #555;
+  font-size: 1rem !important;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.professional-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.professional-services li {
+  padding: 8px 11px;
+  border: 1px solid rgba(17, 17, 17, 0.22) !important;
+  background: #fff;
+  color: #111 !important;
+  font-size: 0.82rem !important;
+  font-weight: 650;
+  line-height: 1.35;
+}
+
+.professional-services--preview {
+  margin-top: 4px;
+}
+
+.professional-card__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px 20px;
+  margin-top: 30px;
+}
+
+.professional-card__actions .button {
+  flex: 0 0 auto;
+}
+
+.professional-card__actions .text-link {
+  font-size: 0.9rem !important;
+}
+
+.professional-card__fallback {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  place-items: center;
+  padding: 30px;
+  background: #efede8;
+  color: #111;
+  text-align: center;
+}
+
+.professional-card__fallback strong {
+  font-family: var(--serif);
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1;
+}
+
+/* Profile modal */
+.profile-dialog {
+  width: min(1160px, calc(100% - 36px));
+  max-width: none;
+  max-height: 92dvh;
+  margin: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #111;
+}
+
+.profile-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.76);
+  backdrop-filter: blur(4px);
+}
+
+.profile-dialog__panel {
+  display: grid;
+  max-height: 92dvh;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: #fff;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.32);
+}
+
+.profile-dialog__header {
+  display: flex;
+  min-height: 68px;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: clamp(22px, 4vw, 46px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  background: #111 !important;
+  color: #fff;
+}
+
+.profile-dialog__header > span {
+  font-size: 0.86rem !important;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.profile-dialog__header button {
+  display: grid;
+  width: 68px;
+  align-self: stretch;
+  place-items: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.18);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.profile-dialog__header button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.profile-dialog__scroll {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.profile-dialog__layout {
+  display: grid;
+  min-height: 100%;
+  grid-template-columns: minmax(320px, 0.78fr) minmax(0, 1.22fr);
+  align-items: start;
+}
+
+.profile-dialog__aside {
+  min-height: 100%;
+  padding: clamp(24px, 3.5vw, 42px);
+  background: #f3f1ec !important;
+}
+
+.profile-dialog__portrait {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #e5e2dc !important;
+}
+
+.profile-dialog__portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none !important;
+  transition: none !important;
+}
+
+.profile-dialog__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.profile-dialog__gallery figure {
+  margin: 0;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #e5e2dc;
+}
+
+.profile-dialog__gallery figure:only-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 10;
+}
+
+.profile-dialog__gallery img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none !important;
+  transition: none !important;
+}
+
+.profile-dialog__services {
+  margin-top: 28px;
+}
+
+.profile-dialog__services .eyebrow {
+  margin-bottom: 14px;
+  color: #111 !important;
+}
+
+.profile-dialog__content {
+  min-width: 0;
+  padding: clamp(38px, 5vw, 72px);
+  background: #fff;
+}
+
+.profile-dialog__content > .eyebrow {
+  margin-bottom: 14px;
+  color: #111 !important;
+}
+
+.profile-dialog__content h2 {
+  margin-bottom: 8px;
+  color: #111;
+  font-family: var(--serif);
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  line-height: 0.95;
+}
+
+.profile-dialog__content h3 {
+  margin-bottom: 32px;
+  color: #555;
+  font-size: 1.08rem !important;
+  line-height: 1.5;
+}
+
+.profile-dialog__bio {
+  padding-top: 30px;
+  border-top: 1px solid rgba(17, 17, 17, 0.18);
+}
+
+.profile-dialog__bio p {
+  margin-bottom: 18px;
+  color: #2f2f2d !important;
+  font-size: 1rem !important;
+  line-height: 1.78;
+}
+
+.profile-dialog__bio p:last-child {
+  margin-bottom: 0;
+}
+
+.profile-dialog__actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 34px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(17, 17, 17, 0.18);
+}
+
+.profile-dialog__actions .button--dark,
+.profile-dialog__actions .button--brass {
+  border-color: #111 !important;
+  background: #111 !important;
+  color: #fff !important;
+}
+
+.profile-dialog__actions .button--dark:hover,
+.profile-dialog__actions .button--brass:hover {
+  background: #fff !important;
+  color: #111 !important;
+}
+
+.profile-dialog__contact-link,
+.profile-dialog__external-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #111 !important;
+  font-size: 0.94rem !important;
+  font-weight: 700;
+}
+
+.profile-dialog__external-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 26px;
+  margin-top: 26px;
+}
+
+.profile-dialog__external-links a {
+  border-bottom: 1px solid currentColor;
+}
+
+@media (max-width: 980px) {
+  .directory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .professional-card {
+    grid-template-columns: minmax(240px, 0.75fr) minmax(0, 1.25fr);
+  }
+
+  .profile-dialog__layout {
+    grid-template-columns: minmax(270px, 0.72fr) minmax(0, 1.28fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .professional-card {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .professional-card__image {
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+  }
+
+  .professional-card__body {
+    padding: 28px 22px 32px !important;
+  }
+
+  .profile-dialog {
+    width: calc(100% - 16px);
+    max-height: calc(100dvh - 16px);
+  }
+
+  .profile-dialog__panel {
+    max-height: calc(100dvh - 16px);
+  }
+
+  .profile-dialog__header {
+    min-height: 58px;
+  }
+
+  .profile-dialog__header button {
+    width: 58px;
+  }
+
+  .profile-dialog__layout {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-dialog__aside {
+    min-height: 0;
+    padding: 18px;
+  }
+
+  .profile-dialog__portrait {
+    max-height: 520px;
+    aspect-ratio: 4 / 5;
+  }
+
+  .profile-dialog__gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .profile-dialog__content {
+    padding: 32px 22px 40px;
+  }
+
+  .profile-dialog__content h2 {
+    font-size: clamp(2.7rem, 13vw, 4rem);
+  }
+
+  .profile-dialog__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .profile-dialog__actions .button {
+    width: 100%;
+  }
+}
+
+/* Marley / no-photo professional fallback */
+.professional-card__fallback--initial {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+
+  place-items: center;
+
+  background: #111;
+  color: #fff;
+}
+
+.professional-card__fallback--initial strong {
+  font-family: var(--serif);
+
+  font-size: clamp(6rem, 10vw, 10rem);
+  font-weight: 500;
+
+  line-height: 1;
+
+  font-size: clamp(6rem, 10vw, 10rem);
+  font-weight: 500;
+
+  line-height: 1;
+
+  letter-spacing: -0.06em;
+}
+
+/* =========================================================
+   PROFESSIONAL CARD NAME FIX
+   Prevent long names from getting cut off
+   ========================================================= */
+
+.professional-card {
+  grid-template-columns: minmax(200px, 42%) minmax(0, 58%) !important;
+}
+
+/* Give the content column room to actually wrap */
+.professional-card__body {
+  min-width: 0;
+  overflow: visible !important;
+}
+
+/* Professional names */
+.professional-card__body h2 {
+  width: 100%;
+  max-width: 100%;
+
+  margin-bottom: 8px;
+
+  font-size: clamp(2rem, 2.6vw, 2.75rem) !important;
+  line-height: 0.96 !important;
+
+  letter-spacing: -0.055em;
+
+  white-space: normal !important;
+  overflow: visible !important;
+
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+/* Make sure nothing higher up clips the text */
+.directory-grid,
+.professional-card,
+.professional-card__body {
+  overflow: visible;
+}
+
+.professional-card__body {
+  padding:
+    clamp(28px, 3vw, 46px)
+    clamp(24px, 2.6vw, 38px) !important;
+}
+
+.professional-card__body h2 {
+  font-size: clamp(1.9rem, 2.45vw, 2.6rem) !important;
+}
